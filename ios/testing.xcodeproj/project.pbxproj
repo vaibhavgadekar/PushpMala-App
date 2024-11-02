@@ -14,6 +14,15 @@
 		13B07FC11A68108700A75B9A /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 13B07FB71A68108700A75B9A /* main.m */; };
 		7699B88040F8A987B510C191 /* libPods-testing-testingTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 19F6CBCC0A4E27FBF8BF4A61 /* libPods-testing-testingTests.a */; };
 		81AB9BB82411601600AC10FF /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 81AB9BB72411601600AC10FF /* LaunchScreen.storyboard */; };
+		DF02EFD8F76C4243AD8929BB /* OnestBold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 537FA68EF5F5456A913C3D1F /* OnestBold.ttf */; };
+		4F73DCD175FF4419B00B4641 /* OnestBlack.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 43A75236DCFB42FBA0FD4C16 /* OnestBlack.ttf */; };
+		69850C3308A345838FCBAB92 /* OnestExtraBold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = AAD34E4447BC402B8D223732 /* OnestExtraBold.ttf */; };
+		FCE6E7C6A2B74D5FB26B142E /* KohinoorDevanagari-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 5166B12D37BD49B7B67677D8 /* KohinoorDevanagari-Bold.ttf */; };
+		4F0B08C9A6DD4408AF80C6BB /* KohinoorDevanagari-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = AC27FDBCB86143C188FD992A /* KohinoorDevanagari-Regular.ttf */; };
+		2D63FE9293C648399BAEAF12 /* OnestLight.ttf in Resources */ = {isa = PBXBuildFile; fileRef = EE8F7004313F47D9902D7F32 /* OnestLight.ttf */; };
+		48A87CC2AF084F7194164484 /* OnestMedium.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 5A68634EF54F41EEA3DC6F9B /* OnestMedium.ttf */; };
+		67B1C3142C414BB48157579B /* OnestRegular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 1F3D7808939347EA95BCCF6F /* OnestRegular.ttf */; };
+		E3BA6A7C8C8D47F1BD42BCDA /* OnestThin.ttf in Resources */ = {isa = PBXBuildFile; fileRef = FA0ECF294E1C49E3BE39E5EB /* OnestThin.ttf */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -45,6 +54,15 @@
 		81AB9BB72411601600AC10FF /* LaunchScreen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = LaunchScreen.storyboard; path = testing/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		89C6BE57DB24E9ADA2F236DE /* Pods-testing-testingTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-testing-testingTests.release.xcconfig"; path = "Target Support Files/Pods-testing-testingTests/Pods-testing-testingTests.release.xcconfig"; sourceTree = "<group>"; };
 		ED297162215061F000B7C4FE /* JavaScriptCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = JavaScriptCore.framework; path = System/Library/Frameworks/JavaScriptCore.framework; sourceTree = SDKROOT; };
+		537FA68EF5F5456A913C3D1F /* OnestBold.ttf */ = {isa = PBXFileReference; name = "OnestBold.ttf"; path = "../src/assets/fonts/OnestBold.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
+		43A75236DCFB42FBA0FD4C16 /* OnestBlack.ttf */ = {isa = PBXFileReference; name = "OnestBlack.ttf"; path = "../src/assets/fonts/OnestBlack.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
+		AAD34E4447BC402B8D223732 /* OnestExtraBold.ttf */ = {isa = PBXFileReference; name = "OnestExtraBold.ttf"; path = "../src/assets/fonts/OnestExtraBold.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
+		5166B12D37BD49B7B67677D8 /* KohinoorDevanagari-Bold.ttf */ = {isa = PBXFileReference; name = "KohinoorDevanagari-Bold.ttf"; path = "../src/assets/fonts/KohinoorDevanagari-Bold.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
+		AC27FDBCB86143C188FD992A /* KohinoorDevanagari-Regular.ttf */ = {isa = PBXFileReference; name = "KohinoorDevanagari-Regular.ttf"; path = "../src/assets/fonts/KohinoorDevanagari-Regular.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
+		EE8F7004313F47D9902D7F32 /* OnestLight.ttf */ = {isa = PBXFileReference; name = "OnestLight.ttf"; path = "../src/assets/fonts/OnestLight.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
+		5A68634EF54F41EEA3DC6F9B /* OnestMedium.ttf */ = {isa = PBXFileReference; name = "OnestMedium.ttf"; path = "../src/assets/fonts/OnestMedium.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
+		1F3D7808939347EA95BCCF6F /* OnestRegular.ttf */ = {isa = PBXFileReference; name = "OnestRegular.ttf"; path = "../src/assets/fonts/OnestRegular.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
+		FA0ECF294E1C49E3BE39E5EB /* OnestThin.ttf */ = {isa = PBXFileReference; name = "OnestThin.ttf"; path = "../src/assets/fonts/OnestThin.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -124,6 +142,7 @@
 				83CBBA001A601CBA00E9B192 /* Products */,
 				2D16E6871FA4F8E400B85C8A /* Frameworks */,
 				BBD78D7AC51CEA395F1C20DB /* Pods */,
+				6AEE6B6EDAFE4507BABFC844 /* Resources */,
 			);
 			indentWidth = 2;
 			sourceTree = "<group>";
@@ -149,6 +168,23 @@
 			);
 			path = Pods;
 			sourceTree = "<group>";
+		};
+		6AEE6B6EDAFE4507BABFC844 /* Resources */ = {
+			isa = "PBXGroup";
+			children = (
+				537FA68EF5F5456A913C3D1F /* OnestBold.ttf */,
+				43A75236DCFB42FBA0FD4C16 /* OnestBlack.ttf */,
+				AAD34E4447BC402B8D223732 /* OnestExtraBold.ttf */,
+				5166B12D37BD49B7B67677D8 /* KohinoorDevanagari-Bold.ttf */,
+				AC27FDBCB86143C188FD992A /* KohinoorDevanagari-Regular.ttf */,
+				EE8F7004313F47D9902D7F32 /* OnestLight.ttf */,
+				5A68634EF54F41EEA3DC6F9B /* OnestMedium.ttf */,
+				1F3D7808939347EA95BCCF6F /* OnestRegular.ttf */,
+				FA0ECF294E1C49E3BE39E5EB /* OnestThin.ttf */,
+			);
+			name = Resources;
+			sourceTree = "<group>";
+			path = "";
 		};
 /* End PBXGroup section */
 
@@ -245,6 +281,15 @@
 			files = (
 				81AB9BB82411601600AC10FF /* LaunchScreen.storyboard in Resources */,
 				13B07FBF1A68108700A75B9A /* Images.xcassets in Resources */,
+				DF02EFD8F76C4243AD8929BB /* OnestBold.ttf in Resources */,
+				4F73DCD175FF4419B00B4641 /* OnestBlack.ttf in Resources */,
+				69850C3308A345838FCBAB92 /* OnestExtraBold.ttf in Resources */,
+				FCE6E7C6A2B74D5FB26B142E /* KohinoorDevanagari-Bold.ttf in Resources */,
+				4F0B08C9A6DD4408AF80C6BB /* KohinoorDevanagari-Regular.ttf in Resources */,
+				2D63FE9293C648399BAEAF12 /* OnestLight.ttf in Resources */,
+				48A87CC2AF084F7194164484 /* OnestMedium.ttf in Resources */,
+				67B1C3142C414BB48157579B /* OnestRegular.ttf in Resources */,
+				E3BA6A7C8C8D47F1BD42BCDA /* OnestThin.ttf in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
