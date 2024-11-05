@@ -9,6 +9,8 @@ export namespace Design {
     OnestMedium: 'OnestMedium',
     OnestRegular: 'OnestRegular',
     OnestThin: 'OnestThin',
+    'KohinoorDevanagari-Bold': 'KohinoorDevanagari-Bold',
+    'KohinoorDevanagari-Regular': 'KohinoorDevanagari-Regular',
   };
   export const fontSize = {
     /** size:60 */
@@ -53,7 +55,7 @@ export namespace Design {
     white: '#FFFFFF',
     black: '#000000',
     gray: '#E2E2E2',
-    primary: '#4E46B4',
+    primary: '#f49d0c',
     lightGray: '#595D62',
     baseLight: '#F2F4F8',
   };

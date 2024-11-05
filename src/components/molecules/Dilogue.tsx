@@ -32,52 +32,55 @@ const Dilogue = ({title, rightIcon, onPress}: DilogueProps) => {
             setModalVisible(!modalVisible);
           }}>
           <View style={styles.centeredView}>
-            <View style={styles.modalView}>
-              <View
-                style={{
-                  height: 3,
-                  width: '15%',
-                  backgroundColor: Design.color.gray,
-                  marginTop: 20,
-                }}></View>
-
-              <Pressable
-                style={{marginLeft: '80%'}}
-                onPress={() => setModalVisible(!modalVisible)}>
-                {rightIcon && <View>{rightIcon}</View>}
-              </Pressable>
-
-              <View
-                style={{
-                  justifyContent: 'center',
-                  alignItems: 'center',
-                  // width: '80%',
-                }}>
-                <Text
+            <View style={{flex: 1}}>
+              <View style={styles.modalView}>
+                <View
                   style={{
-                    color: 'black',
-                    // marginTop: 20,
-                    textAlign: 'center',
-                    width: '70%',
-                    fontFamily: Design.fontFamily.OnestRegular,
-                    fontSize: Design.fontSize.large,
-                    // fontStyle:'italic'
-                  }}>
-                  {title}
-                </Text>
-              </View>
-              <View
-                style={{
-                  position: 'absolute',
-                  bottom: 0,
-                  width: '90%',
-                  marginBottom: 12,
-                }}>
-                <PMButton
-                  title="Click Me"
-                  buttonType="primary"
-                  onPress={() => console.log('hello')}
+                    height: 3,
+                    width: '15%',
+                    backgroundColor: Design.color.gray,
+                    marginTop: 20,
+                  }}
                 />
+
+                <Pressable
+                  style={{marginLeft: '80%'}}
+                  onPress={() => setModalVisible(!modalVisible)}>
+                  {rightIcon && <View>{rightIcon}</View>}
+                </Pressable>
+
+                <View
+                  style={{
+                    justifyContent: 'center',
+                    alignItems: 'center',
+                    // width: '80%',
+                  }}>
+                  <Text
+                    style={{
+                      color: 'black',
+                      // marginTop: 20,
+                      textAlign: 'center',
+                      width: '70%',
+                      fontFamily: Design.fontFamily.OnestRegular,
+                      fontSize: Design.fontSize.large,
+                      // fontStyle:'italic'
+                    }}>
+                    {title}
+                  </Text>
+                </View>
+                <View
+                  style={{
+                    position: 'absolute',
+                    bottom: 0,
+                    width: '90%',
+                    marginBottom: 12,
+                  }}>
+                  <PMButton
+                    title="Click Me"
+                    buttonType="primary"
+                    onPress={() => console.log('hello')}
+                  />
+                </View>
               </View>
             </View>
           </View>
@@ -96,11 +99,11 @@ const styles = StyleSheet.create({
   centeredView: {
     flex: 1,
     backgroundColor: 'rgba(52, 52, 52, 0.8)',
+    padding: 16,
   },
   modalView: {
     backgroundColor: Design.color.baseLight,
-    borderTopLeftRadius: 40,
-    borderTopRightRadius: 40,
+    borderRadius: 16,
     height: '60%',
     width: '100%',
     alignItems: 'center',
