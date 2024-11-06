@@ -1,3 +1,4 @@
+import React from 'react';
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
 import {RootStackParamList} from '../namespaces/RootStackParamList';
 import WelcomeScreen from '../screens/WelcomeScreen';
@@ -9,7 +10,7 @@ export const RootStackNavigation = () => {
   return (
     <RootStack.Navigator
       screenOptions={{
-        animation: 'fade_from_bottom',
+        animation: 'slide_from_right',
       }}>
       <RootStack.Screen
         name="WelcomeScreen"

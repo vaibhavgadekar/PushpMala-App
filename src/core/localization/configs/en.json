@@ -1,0 +1,18 @@
+{
+  "common": {
+    "getStarted": "Get Started",
+    "mobileNoRequired": "Mobile number is required",
+    "mobileNumberTenDigit": "Phone number must be 10 digit",
+    "hello": "By continuing you agree to our Terms of Conditions and Privacy Policy"
+  },
+  "userOnboard": {
+    "welcome": {
+      "titleText": "Welcome to Pushpmala",
+      "infoText": "Here, you can enjoy devotion, aartis, and bhajans. Let’s begin this spiritual journey and share your reverence for God.",
+      "buttonText": "Begin Your Spiritual Journey"
+    },
+    "login": {
+      "enterMobileText": "Enter your phone number and we will send an OTP to continue"
+    }
+  }
+}

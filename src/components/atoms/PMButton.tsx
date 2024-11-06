@@ -49,14 +49,14 @@ export const PMButton = (props: ButtonProps) => {
           strokeWidth: buttonType === 'secondary' ? 1 : 0,
         }}>
         <View style={styles.content}>
-          {leftIcon && <View style={styles.icon}>{leftIcon}</View>}
+          <View style={styles.icon}>{leftIcon}</View>
           <PMTextLabel
             title={title}
             color={buttonType === 'secondary' ? 'lightGray' : 'white'}
             fontFamily={props?.fontFamily ?? 'KohinoorDevanagari-Regular'}
             style={styles.text}
           />
-          {rightIcon && <View style={styles.icon}>{rightIcon}</View>}
+          <View style={styles.icon}>{rightIcon}</View>
         </View>
       </SquircleView>
     </ScalePress>
@@ -65,18 +65,18 @@ export const PMButton = (props: ButtonProps) => {
 
 const styles = StyleSheet.create({
   button: {
-    padding: Design.space.regular,
     height: 58,
     justifyContent: 'center',
     alignItems: 'center',
     borderRadius: 20,
     flexDirection: 'row',
     minWidth: Dimensions.get('window').width * 0.9,
+    maxWidth: Dimensions.get('window').width * 0.9,
   },
   content: {
     flexDirection: 'row',
     alignItems: 'center',
-    justifyContent: 'center',
+    justifyContent: 'space-between',
   },
   icon: {
     width: '20%',
