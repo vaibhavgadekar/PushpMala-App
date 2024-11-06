@@ -1,8 +1,13 @@
 import React from 'react';
 import {ImageBackground, StatusBar, View, StyleSheet} from 'react-native';
 import {PMButton, PMTextLabel} from '../components/atoms';
+import {useTranslation} from 'react-i18next';
+import ArrowRight from '../assets/icons/ArrowRight';
+import {Design} from '../namespaces/Design';
 
 export default function WelcomeScreen() {
+  const {t} = useTranslation();
+
   return (
     <>
       <StatusBar backgroundColor="transparent" translucent />
@@ -16,13 +21,13 @@ export default function WelcomeScreen() {
         <View style={styles.contentContainer}>
           <View style={styles.textContainer}>
             <PMTextLabel
-              title="पुष्पमाला में आपका स्वागत है"
+              title={t('userOnboard:welcome:titleText')}
               fontFamily="KohinoorDevanagari-Bold"
               type="large"
               color="lightGray"
             />
             <PMTextLabel
-              title="यहाँ, आप भक्ति, आरती और भजन का आनंद ले सकते हैं। चलिए, इस आध्यात्मिक यात्रा की शुरुआत करें और भगवान के प्रति अपनी श्रद्धा साझा करें"
+              title={t('userOnboard:welcome:infoText')}
               fontFamily="KohinoorDevanagari-Regular"
               type="regular"
               color="lightGray"
@@ -31,10 +36,11 @@ export default function WelcomeScreen() {
           </View>
           <View style={styles.buttonContainer}>
             <PMButton
-              title="अपनी भक्ति यात्रा शुरू करें"
+              title={t('userOnboard:welcome:buttonText')}
               onPress={() => console.log('okay')}
               buttonType="primary"
               fontFamily="KohinoorDevanagari-Regular"
+              rightIcon={<ArrowRight />}
             />
           </View>
         </View>
@@ -71,8 +77,8 @@ const styles = StyleSheet.create({
   },
   descriptionText: {
     textAlign: 'center',
-    paddingHorizontal: 16,
-    marginVertical: 8,
+    paddingHorizontal: Design.space.regular,
+    marginVertical: Design.space.small,
   },
   buttonContainer: {
     position: 'absolute',
