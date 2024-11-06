@@ -6,10 +6,17 @@
 //  */
 import React from 'react';
 
-import WelcomeScreen from './src/screens/WelcomeScreen';
+import {NavigationContainer} from '@react-navigation/native';
+import {RootStackNavigation} from './src/navigation/RootStackNavigation';
 
 const App = () => {
-  return <WelcomeScreen />;
+  return (
+    <>
+      <NavigationContainer>
+        <RootStackNavigation />
+      </NavigationContainer>
+    </>
+  );
 };
 
 export default App;

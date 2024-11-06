@@ -1,13 +1,21 @@
 import React from 'react';
 import {ImageBackground, StatusBar, View, StyleSheet} from 'react-native';
 import {PMButton, PMTextLabel} from '../components/atoms';
+import {useNavigation} from '@react-navigation/native';
 import {useTranslation} from 'react-i18next';
 import ArrowRight from '../assets/icons/ArrowRight';
 import {Design} from '../namespaces/Design';
+import {NativeStackNavigationProp} from '@react-navigation/native-stack';
+import {RootStackParamList} from '../namespaces/RootStackParamList';
 
 export default function WelcomeScreen() {
   const {t} = useTranslation();
+  const navigation =
+    useNavigation<NativeStackNavigationProp<RootStackParamList>>();
 
+  const handleNavigation = () => {
+    navigation.navigate('HomeScreen');
+  };
   return (
     <>
       <StatusBar backgroundColor="transparent" translucent />
@@ -37,7 +45,7 @@ export default function WelcomeScreen() {
           <View style={styles.buttonContainer}>
             <PMButton
               title={t('userOnboard:welcome:buttonText')}
-              onPress={() => console.log('okay')}
+              onPress={handleNavigation}
               buttonType="primary"
               fontFamily="KohinoorDevanagari-Regular"
               rightIcon={<ArrowRight />}
