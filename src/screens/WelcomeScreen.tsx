@@ -1,8 +1,14 @@
 import React from 'react';
 import {ImageBackground, StatusBar, View, StyleSheet} from 'react-native';
 import {PMButton, PMTextLabel} from '../components/atoms';
+import {useNavigation} from '@react-navigation/native';
 
 export default function WelcomeScreen() {
+  const navigation = useNavigation();
+
+  const handleNavigation = () => {
+    navigation.navigate('HomeScreen');
+  };
   return (
     <>
       <StatusBar backgroundColor="transparent" translucent />
@@ -32,7 +38,7 @@ export default function WelcomeScreen() {
           <View style={styles.buttonContainer}>
             <PMButton
               title="अपनी भक्ति यात्रा शुरू करें"
-              onPress={() => console.log('okay')}
+              onPress={handleNavigation}
               buttonType="primary"
               fontFamily="KohinoorDevanagari-Regular"
             />
