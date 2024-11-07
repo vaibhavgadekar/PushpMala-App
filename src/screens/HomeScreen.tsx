@@ -1,7 +1,8 @@
 import React, {Component} from 'react';
-import {FlatList, Image, Pressable, ScrollView, Text, View} from 'react-native';
+import {FlatList, Image, Pressable, ScrollView, StatusBar, Text, View} from 'react-native';
 import {useFetchDashbordQuery} from '../redux/Dashbord/api';
 import PMHeader from '../components/molecules/PMHeader';
+import ArrowLeft from '../assets/icons/ArrowLeft';
 
 export const HomeScreen = () => {
   const {data} = useFetchDashbordQuery({});
@@ -9,6 +10,14 @@ export const HomeScreen = () => {
 
   return (
     <>
+      <StatusBar backgroundColor={'white'} barStyle={'dark-content'} />
+      <PMHeader
+        title="हनुमानगढ़ी के इतिहास"
+        leftIcon={{
+          icon: <ArrowLeft />,
+          onPress: ()=> console.log("okay")
+        }}
+      />
     <ScrollView >
       {gods &&
         gods.map((item: any) => (
