@@ -18,7 +18,9 @@ export const RootStackNavigation = () => {
           headerShown: false,
         }}
       />
-      <RootStack.Screen name="HomeScreen" component={HomeScreen} />
+      <RootStack.Screen name="HomeScreen" component={HomeScreen} options={{
+        headerShown:false
+      }}/>
     </RootStack.Navigator>
   );
 };

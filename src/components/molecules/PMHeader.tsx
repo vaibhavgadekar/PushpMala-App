@@ -42,7 +42,7 @@ export default PMHeader;
 
 const styles = StyleSheet.create({
   container: {
-    height: 70,
+    height: 110,
     backgroundColor: 'white',
     justifyContent: 'center',
     alignItems: 'center',
