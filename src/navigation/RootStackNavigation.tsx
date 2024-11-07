@@ -3,6 +3,7 @@ import {createNativeStackNavigator} from '@react-navigation/native-stack';
 import {RootStackParamList} from '../namespaces/RootStackParamList';
 import WelcomeScreen from '../screens/WelcomeScreen';
 import {HomeScreen} from '../screens/HomeScreen';
+import {Design} from '../namespaces/Design';
 
 const RootStack = createNativeStackNavigator<RootStackParamList>();
 
@@ -17,6 +18,7 @@ export const RootStackNavigation = () => {
         component={WelcomeScreen}
         options={{
           headerShown: false,
+          navigationBarColor: Design.color.lightYellow,
         }}
       />
       <RootStack.Screen
@@ -24,6 +26,7 @@ export const RootStackNavigation = () => {
         component={HomeScreen}
         options={{
           headerShown: false,
+          navigationBarColor: Design.color.white,
         }}
       />
     </RootStack.Navigator>

@@ -18,7 +18,7 @@ i18n
     {
       compatibilityJSON: 'v4',
       preload: ['en', 'hi'],
-      fallbackLng: 'en',
+      fallbackLng: 'hi',
       ns: config.namespaces,
       defaultNS: config.defaultNamespace,
       debug: false,

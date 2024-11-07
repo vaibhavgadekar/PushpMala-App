@@ -23,6 +23,8 @@
 		48A87CC2AF084F7194164484 /* OnestMedium.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 5A68634EF54F41EEA3DC6F9B /* OnestMedium.ttf */; };
 		67B1C3142C414BB48157579B /* OnestRegular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 1F3D7808939347EA95BCCF6F /* OnestRegular.ttf */; };
 		E3BA6A7C8C8D47F1BD42BCDA /* OnestThin.ttf in Resources */ = {isa = PBXBuildFile; fileRef = FA0ECF294E1C49E3BE39E5EB /* OnestThin.ttf */; };
+		F45CA91649534876BE8C6B72 /* BootSplash.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 074118D80A044B62BA06A93F /* BootSplash.storyboard */; };
+		08CAA8AA13F248AB82AAA601 /* Colors.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = EF04EFA7BB834514851C2983 /* Colors.xcassets */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -63,6 +65,8 @@
 		5A68634EF54F41EEA3DC6F9B /* OnestMedium.ttf */ = {isa = PBXFileReference; name = "OnestMedium.ttf"; path = "../src/assets/fonts/OnestMedium.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
 		1F3D7808939347EA95BCCF6F /* OnestRegular.ttf */ = {isa = PBXFileReference; name = "OnestRegular.ttf"; path = "../src/assets/fonts/OnestRegular.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
 		FA0ECF294E1C49E3BE39E5EB /* OnestThin.ttf */ = {isa = PBXFileReference; name = "OnestThin.ttf"; path = "../src/assets/fonts/OnestThin.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
+		074118D80A044B62BA06A93F /* BootSplash.storyboard */ = {isa = PBXFileReference; name = "BootSplash.storyboard"; path = "testing/BootSplash.storyboard"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
+		EF04EFA7BB834514851C2983 /* Colors.xcassets */ = {isa = PBXFileReference; name = "Colors.xcassets"; path = "testing/Colors.xcassets"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = folder.assetcatalog; explicitFileType = undefined; includeInIndex = 0; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -112,6 +116,8 @@
 				81AB9BB72411601600AC10FF /* LaunchScreen.storyboard */,
 				13B07FB71A68108700A75B9A /* main.m */,
 				13B07FB81A68108700A75B9A /* PrivacyInfo.xcprivacy */,
+				074118D80A044B62BA06A93F /* BootSplash.storyboard */,
+				EF04EFA7BB834514851C2983 /* Colors.xcassets */,
 			);
 			name = testing;
 			sourceTree = "<group>";
@@ -290,6 +296,8 @@
 				48A87CC2AF084F7194164484 /* OnestMedium.ttf in Resources */,
 				67B1C3142C414BB48157579B /* OnestRegular.ttf in Resources */,
 				E3BA6A7C8C8D47F1BD42BCDA /* OnestThin.ttf in Resources */,
+				F45CA91649534876BE8C6B72 /* BootSplash.storyboard in Resources */,
+				08CAA8AA13F248AB82AAA601 /* Colors.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

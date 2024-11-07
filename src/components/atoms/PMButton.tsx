@@ -23,7 +23,6 @@ export const PMButton = (props: ButtonProps) => {
   const buttonStyles = StyleSheet.flatten([
     styles.button,
     buttonType === 'primary' && {
-      backgroundColor: Design.color.primary,
       borderColor: 'transparent',
     },
     buttonType === 'secondary' && {
@@ -42,10 +41,9 @@ export const PMButton = (props: ButtonProps) => {
       <SquircleView
         style={buttonStyles}
         squircleParams={{
-          cornerSmoothing: 0.9,
+          cornerSmoothing: 0.6,
           cornerRadius: 20,
-          fillColor: buttonStyles.backgroundColor,
-          strokeColor: buttonStyles.borderColor,
+          fillColor: Design.color.primary,
           strokeWidth: buttonType === 'secondary' ? 1 : 0,
         }}>
         <View style={styles.content}>
@@ -68,7 +66,6 @@ const styles = StyleSheet.create({
     height: 58,
     justifyContent: 'center',
     alignItems: 'center',
-    borderRadius: 20,
     flexDirection: 'row',
     minWidth: Dimensions.get('window').width * 0.9,
     maxWidth: Dimensions.get('window').width * 0.9,
@@ -77,6 +74,7 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     alignItems: 'center',
     justifyContent: 'space-between',
+    paddingVertical: 16,
   },
   icon: {
     width: '20%',

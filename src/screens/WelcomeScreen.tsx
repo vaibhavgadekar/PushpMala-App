@@ -76,7 +76,7 @@ const styles = StyleSheet.create({
   contentContainer: {
     height: '20%',
     width: '100%',
-    backgroundColor: 'white',
+    backgroundColor: Design.color.lightYellow,
     gap: 10,
   },
   textContainer: {
