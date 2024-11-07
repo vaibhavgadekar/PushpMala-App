@@ -55,8 +55,9 @@ export namespace Design {
     white: '#FFFFFF',
     black: '#000000',
     gray: '#E2E2E2',
-    primary: '#f49d0c',
+    primary: '#333333',
     lightGray: '#595D62',
     baseLight: '#F2F4F8',
+    lightYellow: '#FFFBE8',
   };
 }
