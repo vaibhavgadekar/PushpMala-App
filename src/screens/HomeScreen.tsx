@@ -1,32 +1,35 @@
-import {useNavigation} from '@react-navigation/native';
-import React from 'react';
-import {ScrollView, StatusBar, View} from 'react-native';
-import ArrowLeft from '../assets/icons/ArrowLeft';
+import React, {Component} from 'react';
+import {FlatList, Image, Pressable, ScrollView, StatusBar, Text, View} from 'react-native';
+import {useFetchDashbordQuery} from '../redux/Dashbord/api';
 import PMHeader from '../components/molecules/PMHeader';
+import ArrowLeft from '../assets/icons/ArrowLeft';
 
 export const HomeScreen = () => {
-  const navigation = useNavigation();
+  const {data} = useFetchDashbordQuery({});
+  const {gods} = data ?? {};
 
-  const goBack = () => {
-    navigation.goBack();
-  };
   return (
-    <View>
+    <>
       <StatusBar backgroundColor={'white'} barStyle={'dark-content'} />
       <PMHeader
         title="हनुमानगढ़ी के इतिहास"
         leftIcon={{
           icon: <ArrowLeft />,
-          onPress: goBack,
+          onPress: ()=> console.log("okay")
         }}
       />
-      <ScrollView>
-        <View style={{height: 400, width: '100%', backgroundColor: 'white'}} />
-        <View style={{height: 400, width: '100%', backgroundColor: 'pink'}} />
-        <View style={{height: 400, width: '100%', backgroundColor: 'green'}} />
-        <View style={{height: 400, width: '100%', backgroundColor: 'gray'}} />
-        <View style={{height: 400, width: '100%', backgroundColor: 'blue'}} />
-      </ScrollView>
-    </View>
+    <ScrollView >
+      {gods &&
+        gods.map((item: any) => (
+          <View style={{}}>
+            <Image key={item.id} source={{uri: 'https://d1nd5gftn0d0pp.cloudfront.net/'+item.imagePath}} style={{height:100, width:100, borderRadius:100}}/>
+            <Text  style={{color: 'black', fontSize: 24}}>
+              {item?.name}
+            </Text>
+            <Text style={{color: 'black', fontSize: 24}}>{item?.name}</Text>
+          </View>
+        ))}
+    </ScrollView>
+    </>
   );
 };
