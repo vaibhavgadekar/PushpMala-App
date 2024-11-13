@@ -3,7 +3,11 @@
     "getStarted": "Get Started",
     "mobileNoRequired": "Mobile number is required",
     "mobileNumberTenDigit": "Phone number must be 10 digit",
-    "hello": "By continuing you agree to our Terms of Conditions and Privacy Policy"
+    "hello": "By continuing you agree to our Terms of Conditions and Privacy Policy",
+    "changeLang":{
+      "title": "Select Language",
+      "infoText": "Select your preferred language from the list below. Changing the language will update the app's display language to enhance your experience."
+    }
   },
   "userOnboard": {
     "welcome": {
