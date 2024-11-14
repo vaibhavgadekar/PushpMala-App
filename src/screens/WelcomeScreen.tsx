@@ -1,14 +1,13 @@
+import { useNavigation } from '@react-navigation/native';
+import { NativeStackNavigationProp } from '@react-navigation/native-stack';
 import React from 'react';
-import {ImageBackground, StatusBar, View, StyleSheet, Text} from 'react-native';
-import {PMButton, PMTextLabel} from '../components/atoms';
-import {useNavigation} from '@react-navigation/native';
-import {useTranslation} from 'react-i18next';
+import { useTranslation } from 'react-i18next';
+import { ImageBackground, StatusBar, StyleSheet, View } from 'react-native';
 import ArrowRight from '../assets/icons/ArrowRight';
-import {Design} from '../namespaces/Design';
-import {NativeStackNavigationProp} from '@react-navigation/native-stack';
-import {RootStackParamList} from '../namespaces/RootStackParamList';
+import { PMButton, PMTextLabel } from '../components/atoms';
 import ChangeLangDialog from '../components/organisms/dialogs/ChangeLangDialog';
-import CancelIcon from '../assets/icons/CancelIcon';
+import { Design } from '../namespaces/Design';
+import { RootStackParamList } from '../namespaces/RootStackParamList';
 
 export default function WelcomeScreen() {
   const {t} = useTranslation();
