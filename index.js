@@ -7,6 +7,7 @@ import App from './App';
 import {name as appName} from './app.json';
 import './src/core/localization/i18n';
 import {AdManager, TestIds} from 'react-native-admob-native-ads';
+import TrackPlayer from 'react-native-track-player';
 
 AdManager.registerRepository({
   name: 'imageAd',
@@ -22,4 +23,5 @@ AdManager.registerRepository({
   console.log('registered: ', result);
 });
 
+TrackPlayer.registerPlaybackService(() => require('./service'));
 AppRegistry.registerComponent(appName, () => App);
