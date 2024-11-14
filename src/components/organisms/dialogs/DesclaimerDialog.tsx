@@ -1,5 +1,6 @@
 import React, {useState} from 'react';
 import {
+  Image,
   Modal,
   Pressable,
   StatusBar,
@@ -10,15 +11,15 @@ import {
 import {SupportedLanguages} from '../../../constants/Language';
 import i18n from '../../../core/localization/i18n';
 import {Design} from '../../../namespaces/Design';
-import NavigationCard from '../../molecules/NavigationCard';
+
+import {PMButton, PMTextLabel} from '../../atoms';
 import {useTranslation} from 'react-i18next';
 
-const ChangeLangDialog = () => {
+const DesclaimerDialog = () => {
   const [modalVisible, setModalVisible] = useState(false);
   const {t} = useTranslation();
 
-  const onSumbit = (lang: string) => {
-    i18n.changeLanguage(lang);
+  const onSumbit = () => {
     setModalVisible(false);
   };
 
@@ -55,24 +56,26 @@ const ChangeLangDialog = () => {
                 <View style={styles.modelViewHrLine} />
 
                 <View style={styles.containerTextView}>
-                  <Text style={styles.title}>
-                    {t('common:changeLang:title')}
-                  </Text>
-                  <Text style={styles.infoText}>
-                    {t('common:changeLang:infoText')}
-                  </Text>
-                </View>
-
-                {SupportedLanguages.map((item, index) => {
-                  return (
-                    <NavigationCard
-                      title={item.label}
-                      onPress={() => onSumbit(item?.value)}
-                      alpabetTitle={item?.shortCode}
-                      isSelected={item?.value === i18n.language}
+                  <View style={styles.imageView}>
+                    <Image
+                      source={require('../../../assets/images/om_logo.png')}
+                      style={styles.image}
                     />
-                  );
-                })}
+                  </View>
+                  <PMTextLabel
+                    style={styles.infoText}
+                    title={t('common:agreeDialog:infotext')}></PMTextLabel>
+                  <PMTextLabel
+                    style={styles.noticeText}
+                    title={t('common:agreeDialog:noticeText')}></PMTextLabel>
+                </View>
+                <View style={styles.viewPMButton}>
+                  <PMButton
+                    title={t('common:agreeDialog:buttonTitle')}
+                    onPress={onSumbit}
+                    buttonType="primary"
+                  />
+                </View>
               </View>
             </View>
           </View>
@@ -112,7 +115,7 @@ const styles = StyleSheet.create({
     backgroundColor: Design.color.white,
     borderTopLeftRadius: Design.space.regular,
     borderTopRightRadius: Design.space.regular,
-    height: '45%',
+    height: '60%',
     width: '100%',
     alignItems: 'center',
     shadowColor: '#000',
@@ -136,43 +139,39 @@ const styles = StyleSheet.create({
   containerTextView: {
     justifyContent: 'center',
     alignItems: 'center',
-    marginVertical: Design.space.regular,
+    width: '100%',
+    marginTop: Design.space.regular,
   },
-  title: {
-    color: Design.color.lightGray,
-    marginTop: 20,
-    textAlign: 'center',
-    width: '70%',
-    fontFamily: Design.fontFamily['KohinoorDevanagari-Bold'],
-    fontSize: Design.fontSize.large,
+  imageView: {
+    height: 200,
+    width: '90%',
+    backgroundColor: Design.color.lightYellow,
+    borderRadius: 10,
+    justifyContent: 'center',
+    alignItems: 'center',
   },
+  image: {height: 150, width: 150},
+
   infoText: {
-    color: Design.color.lightGray,
+    color: Design.color.black,
     marginTop: Design.space.regular,
     textAlign: 'center',
     paddingHorizontal: Design.space.large,
     fontFamily: Design.fontFamily['KohinoorDevanagari-Regular'],
-    fontSize: Design.fontSize.small,
+    fontSize: Design.fontSize.regular,
   },
-  button: {
-    borderRadius: 20,
-    padding: 10,
-    elevation: 2,
-  },
-  buttonOpen: {
-    backgroundColor: '#F194FF',
-  },
-  buttonClose: {
-    backgroundColor: '#2196F3',
-  },
-  textStyle: {
-    color: Design.color.white,
+  noticeText: {
+    color: 'gray',
+    marginTop: Design.space.regular,
     textAlign: 'center',
+    paddingHorizontal: Design.space.large,
+    fontFamily: Design.fontFamily['KohinoorDevanagari-Regular'],
+    fontSize: Design.fontSize.xsmall,
   },
-  modalText: {
-    marginBottom: Design.space.regular,
-    textAlign: 'center',
+  viewPMButton: {
+    position: 'absolute',
+    bottom: 0,
   },
 });
 
-export default ChangeLangDialog;
+export default DesclaimerDialog;

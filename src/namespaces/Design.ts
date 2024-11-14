@@ -42,7 +42,6 @@ export namespace Design {
     regular: baseFontSize,
     /** size: 12 */
     regularsmall: 12,
-
     /** size: 8 */
     small: baseFontSize / 2,
     /** size: 4 */

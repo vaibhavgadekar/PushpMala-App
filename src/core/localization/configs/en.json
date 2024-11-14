@@ -7,6 +7,11 @@
     "changeLang":{
       "title": "Select Language",
       "infoText": "Select your preferred language from the list below. Changing the language will update the app's display language to enhance your experience."
+    },
+    "agreeDialog":{
+      "infotext":"Welcome to Pushpamala App. Our aim is to connect more than 1 crore Hindus. To cover the costs of servers, maintenance, support and development we are displaying advertisements in the app. Please give us your consent by clicking 'Agree'.",
+      "noticeText":"We do not store any media on our servers. Our platform only lists content that is publicly available on the internet. If you have any copyright concerns, please contact us at abc@gmail.com.",
+      "buttonTitle":"Agree"
     }
   },
   "userOnboard": {
