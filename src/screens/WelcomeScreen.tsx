@@ -66,7 +66,6 @@ const styles = StyleSheet.create({
   backgroundContainer: {
     height: '80%',
     width: '100%',
-    backgroundColor: 'lightgray',
     overflow: 'hidden',
   },
   imageBackground: {

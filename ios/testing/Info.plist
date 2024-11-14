@@ -32,7 +32,7 @@
 		<true/>
 	</dict>
 	<key>NSLocationWhenInUseUsageDescription</key>
-	<string></string>
+	<string/>
 	<key>UILaunchStoryboardName</key>
 	<string>BootSplash</string>
 	<key>UIRequiredDeviceCapabilities</key>
@@ -49,15 +49,9 @@
 	<false/>
 	<key>UIAppFonts</key>
 	<array>
-		<string>OnestBold.ttf</string>
-		<string>OnestBlack.ttf</string>
-		<string>OnestExtraBold.ttf</string>
 		<string>KohinoorDevanagari-Bold.ttf</string>
 		<string>KohinoorDevanagari-Regular.ttf</string>
-		<string>OnestLight.ttf</string>
-		<string>OnestMedium.ttf</string>
-		<string>OnestRegular.ttf</string>
-		<string>OnestThin.ttf</string>
+		<string>KohinoorDevanagari-Medium.ttf</string>
 	</array>
 </dict>
 </plist>

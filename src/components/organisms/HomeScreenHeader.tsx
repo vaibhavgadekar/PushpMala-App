@@ -42,7 +42,7 @@ const styles = StyleSheet.create({
   },
   subText: {
     fontSize: 14,
-    fontFamily: Design.fontFamily['KohinoorDevanagari-Regular'],
+    fontFamily: Design.fontFamily['KohinoorDevanagari-Medium'],
     color: '#666664',
   },
   separator: {

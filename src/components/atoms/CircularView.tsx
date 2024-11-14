@@ -50,7 +50,7 @@ export default function CircularView({
           fontSize: 12,
           color: '#666664',
           textAlign: 'center',
-          fontFamily: Design.fontFamily['KohinoorDevanagari-Regular'],
+          fontFamily: Design.fontFamily['KohinoorDevanagari-Medium'],
         }}>
         {title}
       </Text>

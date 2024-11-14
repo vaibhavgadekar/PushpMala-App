@@ -6,36 +6,12 @@
       "sha1": "fb931fb3b0725e05018f6d53304635feee100fde"
     },
     {
+      "path": "src/assets/fonts/KohinoorDevanagari-Medium.ttf",
+      "sha1": "112ba1e20836bdae8ca7e1c810197b370bfda0ff"
+    },
+    {
       "path": "src/assets/fonts/KohinoorDevanagari-Regular.ttf",
       "sha1": "96903642c7f6d9671cb7f3c891f6e23fb75042e0"
-    },
-    {
-      "path": "src/assets/fonts/OnestBlack.ttf",
-      "sha1": "28e6ee9cb9ce39014b57125d42e49916e24971eb"
-    },
-    {
-      "path": "src/assets/fonts/OnestBold.ttf",
-      "sha1": "f9d558bb21dcaa4ec37ecface0a55a0e5fa8b2ed"
-    },
-    {
-      "path": "src/assets/fonts/OnestExtraBold.ttf",
-      "sha1": "b5c85c1b01f146165d7b7784d5c7a9a851e68d04"
-    },
-    {
-      "path": "src/assets/fonts/OnestLight.ttf",
-      "sha1": "b012913e3ea1236b16fdafea206ea0169657b333"
-    },
-    {
-      "path": "src/assets/fonts/OnestMedium.ttf",
-      "sha1": "6f584f4e932ba1b3880502e6d57f1dec8851548e"
-    },
-    {
-      "path": "src/assets/fonts/OnestRegular.ttf",
-      "sha1": "9d895667ac882cdd122bfb1711ce8dd49e918820"
-    },
-    {
-      "path": "src/assets/fonts/OnestThin.ttf",
-      "sha1": "b2d7a3f4074714dd608109fa29fad0a07c1a2daa"
     }
   ]
 }
