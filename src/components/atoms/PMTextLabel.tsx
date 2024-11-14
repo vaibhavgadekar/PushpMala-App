@@ -15,9 +15,11 @@ export const PMTextLabel = ({
   type = 'regular',
   fontFamily = 'OnestRegular',
   style,
+  ...props
 }: TextLabelProps) => {
   return (
     <Text
+      {...props}
       style={[
         {
           color: Design.color[color],

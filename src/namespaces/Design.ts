@@ -3,14 +3,9 @@ export namespace Design {
   export const baseFontSize = 16 * baseScaleFactor;
 
   export const fontFamily = {
-    OnestBlack: 'OnestBlack',
-    OnestLight: 'OnestLight',
-    OnestExtraBold: 'OnestExtraBold',
-    OnestMedium: 'OnestMedium',
-    OnestRegular: 'OnestRegular',
-    OnestThin: 'OnestThin',
     'KohinoorDevanagari-Bold': 'KohinoorDevanagari-Bold',
     'KohinoorDevanagari-Regular': 'KohinoorDevanagari-Regular',
+    'KohinoorDevanagari-Medium': 'KohinoorDevanagari-Medium',
   };
   export const fontSize = {
     /** size:60 */

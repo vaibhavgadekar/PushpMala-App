@@ -26,7 +26,7 @@ export const supportedLocales: any = {
 
 export const defaultNamespace = 'common';
 
-export const namespaces = ['auth', 'userOnboard'];
+export const namespaces = ['auth', 'userOnboard', 'home'];
 
 export const useLanguageStorage: LanguageDetectorAsyncModule = {
   type: 'languageDetector',
