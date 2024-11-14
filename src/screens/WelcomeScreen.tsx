@@ -1,5 +1,5 @@
 import React from 'react';
-import {ImageBackground, StatusBar, View, StyleSheet} from 'react-native';
+import {ImageBackground, StatusBar, View, StyleSheet, Text} from 'react-native';
 import {PMButton, PMTextLabel} from '../components/atoms';
 import {useNavigation} from '@react-navigation/native';
 import {useTranslation} from 'react-i18next';
@@ -7,6 +7,8 @@ import ArrowRight from '../assets/icons/ArrowRight';
 import {Design} from '../namespaces/Design';
 import {NativeStackNavigationProp} from '@react-navigation/native-stack';
 import {RootStackParamList} from '../namespaces/RootStackParamList';
+import ChangeLangDialog from '../components/organisms/dialogs/ChangeLangDialog';
+import CancelIcon from '../assets/icons/CancelIcon';
 
 export default function WelcomeScreen() {
   const {t} = useTranslation();
@@ -23,8 +25,9 @@ export default function WelcomeScreen() {
         <View style={styles.backgroundContainer}>
           <ImageBackground
             source={require('../assets/images/welcome-bg-2.png')}
-            style={styles.imageBackground}
-          />
+            style={styles.imageBackground}>
+            <ChangeLangDialog />
+          </ImageBackground>
         </View>
         <View style={styles.contentContainer}>
           <View style={styles.textContainer}>
