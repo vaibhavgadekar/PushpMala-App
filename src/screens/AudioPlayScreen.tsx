@@ -1,4 +1,4 @@
-import {useNavigation} from '@react-navigation/native';
+import {RouteProp, useNavigation, useRoute} from '@react-navigation/native';
 import React from 'react';
 import {ScrollView, StyleSheet, View} from 'react-native';
 import ArrowLeft from '../assets/icons/ArrowLeft';
@@ -8,6 +8,7 @@ import MediaListView from '../components/organisms/MediaListView';
 import {Design} from '../namespaces/Design';
 import {cdnUrl} from '../utils/constant';
 import PlayerView from '../components/organisms/PlayerView';
+import {RootStackParamList} from '../namespaces/RootStackParamList';
 
 const bhajans = [
   'https://c.saavncdn.com/704/Achutam-Keshvam-Hindi-2022-20220729081207-500x500.jpg',
@@ -26,6 +27,9 @@ const bhajans = [
 
 export default function AudioPlayScreen() {
   const navigation = useNavigation();
+  const {params} = useRoute<RouteProp<RootStackParamList, 'AudioPlayScreen'>>();
+  console.log(params);
+
   const goBack = () => navigation.goBack();
   const aartiLyrics = '';
 
@@ -40,7 +44,7 @@ export default function AudioPlayScreen() {
       />
       <ScrollView>
         <View style={styles.centerContent}>
-          <PlayerView />
+          <PlayerView image={params?.image} />
           <MediaListView title="Top Bhajans" data={bhajans} />
           <View style={styles.lyricsContainer}>
             <PMTextLabel
@@ -88,7 +92,7 @@ const styles = StyleSheet.create({
   },
   pmTextLabel: {
     fontFamily: Design.fontFamily['KohinoorDevanagari-Bold'],
-    color: '#616161',
+    color: '#756D6D',
     marginTop: Design.space.regular,
     paddingHorizontal: Design.space.regular,
     textAlign: 'center',
@@ -106,7 +110,7 @@ const styles = StyleSheet.create({
   },
   timerText: {
     fontFamily: Design.fontFamily['KohinoorDevanagari-Bold'],
-    color: '#616161',
+    color: '#756D6D',
   },
   controlRow: {
     flexDirection: 'row',

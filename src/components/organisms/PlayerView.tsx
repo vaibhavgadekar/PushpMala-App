@@ -23,7 +23,11 @@ import {formatMillisecondsToTime} from '../../utils/formatMillisecondsToTime';
 import {PMTextLabel} from '../atoms';
 import ScalePress from '../atoms/ScalePress';
 
-export default function PlayerView() {
+export type PlayerViewProps = {
+  image: string;
+};
+
+export default function PlayerView({image}: PlayerViewProps) {
   const {width, height} = useWindowDimensions();
   const progress = useProgress();
   const {state} = usePlaybackState();
@@ -84,11 +88,11 @@ export default function PlayerView() {
           {height: height * 0.45, width: width * 0.9},
         ]}
         source={{
-          uri: 'https://c.saavncdn.com/256/Shree-Hanuman-Chalisa-Hanuman-Ashtak-Hindi-1992-20230904173628-500x500.jpg',
+          uri: image,
         }}>
         <Image
           source={{
-            uri: 'https://c.saavncdn.com/256/Shree-Hanuman-Chalisa-Hanuman-Ashtak-Hindi-1992-20230904173628-500x500.jpg',
+            uri: image,
           }}
           style={[styles.image, {height: height * 0.4, width: width * 0.8}]}
         />
@@ -104,9 +108,9 @@ export default function PlayerView() {
           style={{width: width * 0.9}}
           maximumValue={progress.duration}
           value={progress.position}
-          minimumTrackTintColor={'#616161'}
+          minimumTrackTintColor={'#756D6D'}
           maximumTrackTintColor="#D9D9D9"
-          thumbTintColor={'#616161'}
+          thumbTintColor={'#756D6D'}
           onSlidingComplete={handleChange}
         />
       </View>
@@ -151,7 +155,7 @@ const styles = StyleSheet.create({
     width: '90%',
     justifyContent: 'center',
     alignItems: 'center',
-    backgroundColor: '#f5f5f5',
+    backgroundColor: '#FAF9F6',
     paddingBottom: Design.space.regular,
     marginTop: 40,
     borderRadius: 20,
@@ -171,7 +175,7 @@ const styles = StyleSheet.create({
   },
   pmTextLabel: {
     fontFamily: Design.fontFamily['KohinoorDevanagari-Bold'],
-    color: '#616161',
+    color: '#756D6D',
     marginTop: Design.space.regular,
     paddingHorizontal: Design.space.regular,
     textAlign: 'center',
@@ -189,7 +193,7 @@ const styles = StyleSheet.create({
   },
   timerText: {
     fontFamily: Design.fontFamily['KohinoorDevanagari-Bold'],
-    color: '#616161',
+    color: '#756D6D',
   },
   controlRow: {
     flexDirection: 'row',
