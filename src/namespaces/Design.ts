@@ -14,6 +14,7 @@ export namespace Design {
     xxlarge: baseFontSize * 2.8125,
     /** size:35 */
     xlarge: baseFontSize * 2.1875,
+    mlarge: 28,
     /** size:24 */
     large: baseFontSize * 1.5,
     /** size:16 */
