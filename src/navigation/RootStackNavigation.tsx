@@ -11,6 +11,7 @@ const RootStack = createNativeStackNavigator<RootStackParamList>();
 export const RootStackNavigation = () => {
   return (
     <RootStack.Navigator
+      initialRouteName="WelcomeScreen"
       screenOptions={{
         animation: 'slide_from_right',
       }}>
