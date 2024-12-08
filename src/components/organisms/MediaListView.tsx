@@ -4,8 +4,13 @@ import {Design} from '../../namespaces/Design';
 import {PMTextLabel} from '../atoms';
 import ScalePress from '../atoms/ScalePress';
 import {MediaListViewProps} from './types';
+import {useNavigation} from '@react-navigation/native';
+import {NativeStackNavigationProp} from '@react-navigation/native-stack';
+import {RootStackParamList} from '../../namespaces/RootStackParamList';
 
 export default function MediaListView({data, title}: MediaListViewProps) {
+  const navigation =
+    useNavigation<NativeStackNavigationProp<RootStackParamList>>();
   return (
     <View style={styles.container}>
       <PMTextLabel title={title} style={styles.titleLabel} />
@@ -23,7 +28,7 @@ export default function MediaListView({data, title}: MediaListViewProps) {
             <ScalePress
               key={index}
               style={styles.wrapper}
-              onPress={() => console.log('okay')}>
+              onPress={() => navigation.push('AudioPlayScreen', {image: item})}>
               <>
                 <Image source={{uri: item}} style={styles.image} />
                 <PMTextLabel

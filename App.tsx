@@ -11,15 +11,18 @@ import {RootStackNavigation} from './src/navigation/RootStackNavigation';
 import {Provider} from 'react-redux';
 import {store} from './src/redux/store';
 import BootSplash from 'react-native-bootsplash';
+import TrackPlayer from 'react-native-track-player';
 
 const App = () => {
   const hideSplash = async () => {
     await BootSplash.hide({fade: true});
+    await TrackPlayer.setupPlayer();
     // …do multiple sync or async tasks
   };
   useEffect(() => {
     hideSplash();
   });
+
   return (
     <Provider store={store}>
       <NavigationContainer>

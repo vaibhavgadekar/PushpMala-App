@@ -21,9 +21,11 @@ import MediaListView from '../components/organisms/MediaListView';
 import {Design} from '../namespaces/Design';
 import {useFetchDashbordQuery} from '../redux/Dashbord/api';
 import {cdnUrl} from '../utils/constant';
+import {useFetchGodsQuery} from '../redux/god/api';
 
 export const HomeScreen = () => {
   const {data} = useFetchDashbordQuery({});
+  const {data: allGods, isLoading} = useFetchGodsQuery({});
   const {gods} = data ?? {};
   const bannerRef = useRef<BannerAd>(null);
   const adUnitId = __DEV__
@@ -73,14 +75,16 @@ export const HomeScreen = () => {
     cdnUrl + 'pushpmala/image/99bif.webp',
   ];
 
+  console.log({allGods});
+
   return (
     <View style={styles.conatiner}>
       <StatusBar backgroundColor={'#FFFEFA'} barStyle={'dark-content'} />
       <ScrollView>
         <View style={styles.headerContainer}>
           <HomeScreenHeader />
-          <GodsCircularList data={gods} />
-          <ScalePress
+          {/* <GodsCircularList data={gods} /> */}
+          {/* <ScalePress
             onPress={() => console.log('oks')}
             style={{
               justifyContent: 'center',
@@ -97,10 +101,15 @@ export const HomeScreen = () => {
               }}
               // resizeMode="contain"
             />
-          </ScalePress>
+          </ScalePress> */}
         </View>
         <View>
-          <GodsList title="सभी देवी-देवताओं के भजन" data={imageArray} />
+          {!isLoading && (
+            <GodsList
+              title="सभी देवी-देवताओं के भजन"
+              data={allGods?.data?.data}
+            />
+          )}
           <MediaListView title="Top Songs" data={aaratiArray} />
           <MediaListView title="Top Bhajans" data={bhajans} />
           <MediaListView title="Top Bhajans" data={bhajans} />
@@ -127,10 +136,10 @@ const styles = StyleSheet.create({
   conatiner: {
     flex: 1,
     backgroundColor: Design.color.white,
-    marginTop: StatusBar.currentHeight,
+    // marginTop: StatusBar.currentHeight,
   },
   headerContainer: {
-    height: 350,
+    height: 100,
     width: '100%',
     backgroundColor: '#FFFEFA',
     borderBottomColor: '#fff5d5',
