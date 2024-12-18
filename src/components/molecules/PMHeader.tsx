@@ -68,7 +68,6 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     borderBottomWidth: 1,
     borderBottomColor: Design.color.baseLight,
-    marginTop: StatusBar.currentHeight,
   },
   mainView: {
     flex: 1,

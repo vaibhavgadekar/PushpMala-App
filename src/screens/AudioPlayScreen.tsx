@@ -9,6 +9,7 @@ import {Design} from '../namespaces/Design';
 import {cdnUrl} from '../utils/constant';
 import PlayerView from '../components/organisms/PlayerView';
 import {RootStackParamList} from '../namespaces/RootStackParamList';
+import YTPlayerView from '../components/organisms/YTPlayerView';
 
 const bhajans = [
   'https://c.saavncdn.com/704/Achutam-Keshvam-Hindi-2022-20220729081207-500x500.jpg',
@@ -42,7 +43,8 @@ export default function AudioPlayScreen() {
           onPress: goBack,
         }}
       />
-      <ScrollView>
+      <YTPlayerView />
+      {/* <ScrollView>
         <View style={styles.centerContent}>
           <PlayerView image={params?.image} />
           <MediaListView title="Top Bhajans" data={bhajans} />
@@ -54,7 +56,7 @@ export default function AudioPlayScreen() {
             />
           </View>
         </View>
-      </ScrollView>
+      </ScrollView> */}
     </View>
   );
 }
