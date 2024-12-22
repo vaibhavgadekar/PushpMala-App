@@ -6,6 +6,7 @@ import {
   Pressable,
   AppState,
   Image,
+  ScrollView,
 } from 'react-native';
 import React, {useEffect, useRef, useState} from 'react';
 import YoutubePlayer, {
@@ -16,13 +17,18 @@ import YoutubePlayer, {
 import Slider from '@react-native-community/slider';
 import {Design} from '../../namespaces/Design';
 import {PMTextLabel} from '../atoms';
+import Animated, {FadeIn} from 'react-native-reanimated';
+import YoutubeCard from '../molecules/YoutubeCard';
 export default function YTPlayerView() {
   const playerRef = useRef<YoutubeIframeRef>(null);
   const [videoId, setVideoId] = useState('zTzjxoLfShM');
   const [data, setData] = useState<YoutubeMeta | null>(null);
-  const [showControls, setShowControls] = useState<boolean>(true);
-  const {width} = useWindowDimensions();
   const appState = useRef(AppState.currentState);
+  // const [duration, setDuration] = useState<number>(0);
+  // const [elapsed, setElapsed] = useState(0);
+  // const [showControls, setShowControls] = useState<boolean>(false);
+  // const [isReady, setIsReady] = useState<boolean>(false);
+  // const {width} = useWindowDimensions();
   const [appStateVisible, setAppStateVisible] = useState(appState.current);
 
   useEffect(() => {
@@ -48,65 +54,53 @@ export default function YTPlayerView() {
     };
   }, []);
 
-  useEffect(() => {
-    getYoutubeMeta(videoId).then(setData);
-  }, [videoId]);
+  // useEffect(() => {
+  //   const interval = setInterval(async () => {
+  //     const elapsed_sec = await playerRef?.current?.getCurrentTime(); // this is a promise. dont forget to await
 
-  useEffect(() => {
-    if (showControls) {
-      setTimeout(() => {
-        setShowControls(false);
-      }, 4000);
-    }
-  }, [showControls]);
+  //     // calculations
+  //     const elapsed_ms = Math.floor(elapsed_sec * 1000);
+  //     const ms = elapsed_ms % 1000;
+  //     const min = Math.floor(elapsed_ms / 60000);
+  //     const seconds = Math.floor((elapsed_ms - min * 60000) / 1000);
 
-  const handleChange = (seek: number) => {
-    playerRef.current?.seekTo(seek, true);
-  };
+  //     setElapsed(min);
+  //   }, 100); // 100 ms refresh. increase it if you don't require millisecond precision
 
-  const YoutubeCard = ({youtubeId}: {youtubeId: string}) => {
-    return (
-      <Pressable
-        onPress={() => setVideoId(youtubeId)}
-        style={{
-          padding: 8,
-          justifyContent: 'space-between',
-          flexDirection: 'row',
-          gap: 4,
-          backgroundColor: youtubeId === videoId ? '#efefef' : 'white',
-        }}>
-        <View style={{width: '40%', height: 90}}>
-          <Image
-            source={{
-              uri: `https://img.youtube.com/vi/${youtubeId}/sddefault.jpg`,
-            }}
-            style={{height: '100%', width: '100%', borderRadius: 4}}
-          />
-        </View>
-        <View style={{width: '60%', height: 90}}>
-          <PMTextLabel
-            title={data?.title ?? ''}
-            numberOfLines={3}
-            style={{
-              fontFamily: Design.fontFamily['KohinoorDevanagari-Medium'],
-              fontSize: Design.fontSize.small,
-              marginLeft: 4,
-            }}
-          />
-          <PMTextLabel
-            title={data?.author_name ?? ''}
-            numberOfLines={3}
-            style={{
-              fontFamily: Design.fontFamily['KohinoorDevanagari-Regular'],
-              fontSize: Design.fontSize.small,
-              marginLeft: 4,
-              color: Design.color.lightGray,
-            }}
-          />
-        </View>
-      </Pressable>
-    );
-  };
+  //   return () => {
+  //     clearInterval(interval);
+  //   };
+  // }, []);
+
+  // useEffect(() => {
+  //   if (isReady) {
+  //     getYoutubeMeta(videoId).then(res => {
+  //       setData(res);
+  //     });
+  //   }
+  // }, [isReady, videoId]);
+
+  // useEffect(() => {
+  //   if (isReady) {
+  //     playerRef.current?.getDuration().then(getDuration => {
+  //       if (getDuration) {
+  //         setDuration(getDuration);
+  //       }
+  //     });
+  //   }
+  // }, [isReady]);
+
+  // useEffect(() => {
+  //   if (showControls) {
+  //     setTimeout(() => {
+  //       setShowControls(false);
+  //     }, 4000);
+  //   }
+  // }, [showControls]);
+
+  // const handleChange = (seek: number) => {
+  //   playerRef.current?.seekTo(seek, true);
+  // };
 
   return (
     <>
@@ -115,19 +109,24 @@ export default function YTPlayerView() {
           height: 250,
         }}
         onPress={() => setShowControls(prev => !prev)}>
+        {/* Added this for the custom controller */}
+        {/* <View pointerEvents="none"> */}
         <YoutubePlayer
           ref={playerRef}
           height={300}
+          volume={100}
           play={true}
           videoId={videoId}
+          onReady={() => setIsReady(true)}
           baseUrlOverride="https://matrimony-fe-swart.vercel.app/YTIframe.html"
-          // onChangeState={e => console.log({e})}
           initialPlayerParams={{
-            controls: false,
+            controls: true,
             loop: false,
+            preventFullScreen: false,
           }}
         />
-        {showControls && (
+        {/* </View> */}
+        {/* {showControls && isReady && (
           <View
             style={{
               position: 'absolute',
@@ -139,54 +138,46 @@ export default function YTPlayerView() {
             <View style={styles.sliderContainer}>
               <Slider
                 style={{width: width * 0.75}}
-                maximumValue={100}
-                value={30}
+                maximumValue={duration}
+                // value={30}
                 minimumTrackTintColor={'#FFF'}
                 maximumTrackTintColor="#D9D9D9"
                 thumbTintColor={'#FFF'}
                 onSlidingComplete={handleChange}
               />
             </View>
-            {/* <PMButton
-          title="Oka"
-          onPress={() => {
-            playerRef.current
-              ?.getCurrentTime()
-              .then(currentTime => console.log({currentTime}));
-
-            playerRef.current
-              ?.getDuration()
-              .then(getDuration => console.log({getDuration}));
-          }}
-        />
-
-        <PMButton
-          title="Oka"
-          onPress={() => {
-            playerRef.current?.seekTo(10, true);
-          }}
-        /> */}
           </View>
-        )}
+        )} */}
       </Pressable>
-      <View style={{paddingHorizontal: Design.space.regular}}>
-        <PMTextLabel
-          title={data?.title ?? ''}
-          style={{fontFamily: Design.fontFamily['KohinoorDevanagari-Medium']}}
-        />
-      </View>
-      <YoutubeCard youtubeId="2k69JF5Fpa4" />
-      <YoutubeCard youtubeId="NGeTpIrmAkg" />
-      <YoutubeCard youtubeId="_Z1fjiaCPEk" />
+      <ScrollView>
+        <View style={{paddingHorizontal: Design.space.regular}}>
+          <PMTextLabel
+            title={data?.title ?? ''}
+            style={{fontFamily: Design.fontFamily['KohinoorDevanagari-Medium']}}
+          />
+        </View>
+        {[
+          'AETFvQonfV8',
+          'NGeTpIrmAkg',
+          '_Z1fjiaCPEk',
+          '2k69JF5Fpa4',
+          'NGeTpIrmAkg',
+          '_Z1fjiaCPEk',
+        ].map((item, index) => {
+          return (
+            <Animated.View entering={FadeIn.duration(1000).delay(index * 100)}>
+              <YoutubeCard
+                id={item}
+                isCurrentPlaying={item === videoId}
+                key={index}
+                author_name="Demo"
+                onPress={selectedVideoId => setVideoId(selectedVideoId)}
+                title="Some"
+              />
+            </Animated.View>
+          );
+        })}
+      </ScrollView>
     </>
   );
 }
-
-const styles = StyleSheet.create({
-  sliderContainer: {
-    width: '100%',
-    justifyContent: 'center',
-    alignItems: 'center',
-    marginTop: Design.space.regular,
-  },
-});

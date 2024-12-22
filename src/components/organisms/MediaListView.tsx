@@ -28,7 +28,7 @@ export default function MediaListView({data, title}: MediaListViewProps) {
             <ScalePress
               key={index}
               style={styles.wrapper}
-              onPress={() => navigation.push('AudioPlayScreen', {image: item})}>
+              onPress={() => navigation.push('VideoPlayScreen', {image: item})}>
               <>
                 <Image source={{uri: item}} style={styles.image} />
                 <PMTextLabel
