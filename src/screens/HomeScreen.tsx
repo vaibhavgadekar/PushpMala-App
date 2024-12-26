@@ -7,12 +7,7 @@ import {
   StyleSheet,
   View,
 } from 'react-native';
-import {
-  BannerAd,
-  BannerAdSize,
-  TestIds,
-  useForeground,
-} from 'react-native-google-mobile-ads';
+
 import ScalePress from '../components/atoms/ScalePress';
 import GodsCircularList from '../components/organisms/GodsCircularList';
 import GodsList from '../components/organisms/GodsList';
@@ -27,14 +22,6 @@ export const HomeScreen = () => {
   const {data} = useFetchDashbordQuery({});
   const {data: allGods, isLoading} = useFetchGodsQuery({});
   const {gods} = data ?? {};
-  const bannerRef = useRef<BannerAd>(null);
-  const adUnitId = __DEV__
-    ? TestIds.ADAPTIVE_BANNER
-    : 'ca-app-pub-xxxxxxxxxxxxx/yyyyyyyyyyyyyy';
-
-  useForeground(() => {
-    Platform.OS === 'ios' && bannerRef.current?.load();
-  });
 
   const imageArray = [
     cdnUrl + 'pushpmala/image/musjy.webp',
@@ -121,13 +108,7 @@ export const HomeScreen = () => {
         </View>
       </ScrollView>
 
-      {/* <View style={{position: 'absolute', bottom: 0}}> */}
-      <BannerAd
-        ref={bannerRef}
-        unitId={adUnitId}
-        size={BannerAdSize.ANCHORED_ADAPTIVE_BANNER}
-      />
-      {/* </View> */}
+     
     </View>
   );
 };
