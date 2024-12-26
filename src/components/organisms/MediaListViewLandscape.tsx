@@ -7,8 +7,13 @@ import {MediaListViewProps} from './types';
 import {useNavigation} from '@react-navigation/native';
 import {NativeStackNavigationProp} from '@react-navigation/native-stack';
 import {RootStackParamList} from '../../namespaces/RootStackParamList';
+import {cdnUrl} from '../../utils/constant';
+import {Post} from '../../namespaces/Post';
 
-export default function MediaListView({data, title}: MediaListViewProps) {
+export default function MediaListViewLandscape({
+  data,
+  title,
+}: MediaListViewProps) {
   const navigation =
     useNavigation<NativeStackNavigationProp<RootStackParamList>>();
   return (
@@ -23,16 +28,24 @@ export default function MediaListView({data, title}: MediaListViewProps) {
         data={data}
         directionalLockEnabled={true}
         alwaysBounceVertical={false}
-        renderItem={({item, index}) => {
+        renderItem={({item, index}: {item: Post; index: number}) => {
           return (
             <ScalePress
               key={index}
               style={styles.wrapper}
-              onPress={() => navigation.push('VideoPlayScreen', {image: item})}>
+              onPress={() =>
+                navigation.push('VideoPlayScreen', {
+                  postItem: item,
+                  relatedVodeos: data,
+                })
+              }>
               <>
-                <Image source={{uri: item}} style={styles.image} />
+                <Image
+                  source={{uri: cdnUrl + item?.imagePath}}
+                  style={styles.image}
+                />
                 <PMTextLabel
-                  title="Deewana Tera Aaya Baba Teri Shirdi Mein"
+                  title={item?.name}
                   numberOfLines={2}
                   style={styles.imageTitle}
                 />
@@ -72,13 +85,14 @@ const styles = StyleSheet.create({
   image: {
     height: 120,
     width: 120,
-    borderRadius: 10,
+    borderRadius: 8,
   },
   imageTitle: {
-    fontSize: Design.space.regularsmall,
+    fontSize: 14,
     marginTop: Design.space.small,
     color: Design.color.primary,
     width: 120,
+    textAlign: 'center',
     fontFamily: Design.fontFamily['KohinoorDevanagari-Medium'],
   },
 });

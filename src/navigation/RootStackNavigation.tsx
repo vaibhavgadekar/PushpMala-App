@@ -5,13 +5,14 @@ import WelcomeScreen from '../screens/WelcomeScreen';
 import {HomeScreen} from '../screens/HomeScreen';
 import {Design} from '../namespaces/Design';
 import AudioPlayScreen from '../screens/AudioPlayScreen';
+import VideoPlayScreen from '../screens/VideoPlayScreen';
 
 const RootStack = createNativeStackNavigator<RootStackParamList>();
 
 export const RootStackNavigation = () => {
   return (
     <RootStack.Navigator
-      initialRouteName="WelcomeScreen"
+      initialRouteName="HomeScreen"
       screenOptions={{
         animation: 'slide_from_right',
       }}>
@@ -34,6 +35,14 @@ export const RootStackNavigation = () => {
       <RootStack.Screen
         name="AudioPlayScreen"
         component={AudioPlayScreen}
+        options={{
+          headerShown: false,
+          navigationBarColor: Design.color.white,
+        }}
+      />
+      <RootStack.Screen
+        name="VideoPlayScreen"
+        component={VideoPlayScreen}
         options={{
           headerShown: false,
           navigationBarColor: Design.color.white,

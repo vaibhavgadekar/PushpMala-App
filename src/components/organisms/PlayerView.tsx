@@ -58,7 +58,7 @@ export default function PlayerView({image}: PlayerViewProps) {
       capabilities: [Capability.Play, Capability.Pause],
     });
     var track1 = {
-      url: 'https://aac.saavncdn.com/151/033b2c6ba8a74fe728d6c0e6fc33ad32_320.mp4', // Load media from the network
+      url: 'https://aac.saavncdn.com/511/95a4ab47a27098a4ed4691684e9f40c5_320.mp4', // Load media from the network
       title: 'Aarti (Om Jai Ambe Mata)',
       artist: 'PushpMala Bhajan App',
       album: 'while(1<2)',

@@ -22,6 +22,8 @@ import {Design} from '../namespaces/Design';
 import {useFetchDashbordQuery} from '../redux/Dashbord/api';
 import {cdnUrl} from '../utils/constant';
 import {useFetchGodsQuery} from '../redux/god/api';
+import MediaListViewLandscape from '../components/organisms/MediaListViewLandscape';
+import {Post} from '../namespaces/Post';
 
 export const HomeScreen = () => {
   const {data} = useFetchDashbordQuery({});
@@ -47,17 +49,87 @@ export const HomeScreen = () => {
     cdnUrl + 'pushpmala/image/99bif.webp',
   ];
 
-  const aaratiArray = [
-    'https://c.saavncdn.com/099/Shri-Krishna-Govinda-Hare-Murari-Hindi-2022-20220715191446-500x500.jpg',
-    'https://c.saavncdn.com/143/Ashutosh-Shashank-Shekhar-Hindi-2021-20211203184303-500x500.jpg',
-    'https://c.saavncdn.com/null/Sukhakarta-Dukhakarta-Marathi-2019-20190830080731-500x500.jpg',
-    'https://c.saavncdn.com/151/Durga-Stuti-Hindi-2000-20240925111323-500x500.jpg',
-    cdnUrl + 'pushpmala/image/kxo2w.webp',
-    cdnUrl + 'pushpmala/image/v2oab.webp',
-    cdnUrl + 'pushpmala/image/htx8ek.webp',
-    cdnUrl + 'pushpmala/image/kylo7.webp',
-    cdnUrl + 'pushpmala/image/3mntc.webp',
-    cdnUrl + 'pushpmala/image/99bif.webp',
+  const aaratiArray: Post[] = [
+    {
+      _id: '6769064b12cf3d4f4e9bef7b',
+      name: 'श्री हनुमान चालीसा',
+      description: 'श्री हनुमान चालीसा',
+      imagePath: 'pushpmala/image/9167k.webp',
+      url: 'https://www.youtube.com/watch?v=AETFvQonfV8',
+      savanUrl: '',
+      youtubeUrl: 'AETFvQonfV8',
+      postType: 'VIDEO',
+      postCategoryType: 'BHAJAN',
+      streamType: 'FREE',
+      godId: '674c03c4553bfe7521e193eb',
+      language: 'hi',
+      createdAt: '2024-12-23T06:42:19.743Z',
+      updatedAt: '2024-12-23T06:42:19.743Z',
+    },
+    {
+      _id: '6769076b12cf3d4f4e9bef7f',
+      name: 'मंगल भवन अमंगल हारी',
+      description: 'मंगल भवन अमंगल हारी',
+      imagePath: 'pushpmala/image/8qqbnl.webp',
+      url: 'https://www.youtube.com/watch?v=9cBqVkPhIH4',
+      savanUrl: '9cBqVkPhIH4',
+      youtubeUrl: '9cBqVkPhIH4',
+      postType: 'VIDEO',
+      postCategoryType: 'BHAJAN',
+      streamType: 'FREE',
+      godId: '674c03c4553bfe7521e193eb',
+      language: 'hi',
+      createdAt: '2024-12-23T06:47:07.100Z',
+      updatedAt: '2024-12-23T06:47:07.100Z',
+    },
+    {
+      _id: '67690937da4c362ab63f9745',
+      name: 'श्री बजरंग बाण का पाठ',
+      description: 'श्री बजरंग बाण का पाठ',
+      imagePath: 'pushpmala/image/96ypmi.webp',
+      url: 'https://www.youtube.com/watch?v=WZKs6mbbhLQ',
+      savanUrl: '',
+      youtubeUrl: 'WZKs6mbbhLQ',
+      postType: 'VIDEO',
+      postCategoryType: 'BHAJAN',
+      streamType: 'FREE',
+      godId: '674c03c4553bfe7521e193eb',
+      language: 'hi',
+      createdAt: '2024-12-23T06:54:47.734Z',
+      updatedAt: '2024-12-23T06:54:47.734Z',
+    },
+    {
+      _id: '67690a73da4c362ab63f9749',
+      name: 'है दुःख भंजन',
+      description: 'है दुःख भंजन',
+      imagePath: 'pushpmala/image/5j1z8.webp',
+      url: 'https://www.youtube.com/watch?v=L2ZSKlaX7lU',
+      savanUrl: '',
+      youtubeUrl: 'L2ZSKlaX7lU',
+      postType: 'VIDEO',
+      postCategoryType: 'BHAJAN',
+      streamType: 'FREE',
+      godId: '674c03c4553bfe7521e193eb',
+      language: 'hi',
+      createdAt: '2024-12-23T07:00:03.672Z',
+      updatedAt: '2024-12-23T07:00:03.672Z',
+    },
+    {
+      _id: '676922bbe8773243ed77ee23',
+      name: 'जय जय जय बंजरग बली',
+      description: 'जय जय जय बंजरग बली',
+      imagePath: 'pushpmala/image/z8r1p.webp',
+      url: 'https://www.youtube.com/watch?v=Nx6s4AEFIeI',
+      savanUrl: '',
+      youtubeUrl: 'Nx6s4AEFIeI',
+      postType: 'VIDEO',
+      postCategoryType: 'BHAJAN',
+      streamType: 'FREE',
+      godId: '674c03c4553bfe7521e193eb',
+      language: 'hi',
+      createdAt: '2024-12-23T08:43:39.881Z',
+      updatedAt: '2024-12-23T08:43:39.881Z',
+    },
   ];
 
   const bhajans = [
@@ -74,8 +146,6 @@ export const HomeScreen = () => {
     cdnUrl + 'pushpmala/image/3mntc.webp',
     cdnUrl + 'pushpmala/image/99bif.webp',
   ];
-
-  console.log({allGods});
 
   return (
     <View style={styles.conatiner}>
@@ -110,7 +180,7 @@ export const HomeScreen = () => {
               data={allGods?.data?.data}
             />
           )}
-          <MediaListView title="Top Songs" data={aaratiArray} />
+          <MediaListViewLandscape title="Top Songs" data={aaratiArray} />
           <MediaListView title="Top Bhajans" data={bhajans} />
           <MediaListView title="Top Bhajans" data={bhajans} />
           <MediaListView title="Top Bhajans" data={bhajans} />
@@ -122,11 +192,11 @@ export const HomeScreen = () => {
       </ScrollView>
 
       {/* <View style={{position: 'absolute', bottom: 0}}> */}
-      <BannerAd
+      {/* <BannerAd
         ref={bannerRef}
         unitId={adUnitId}
         size={BannerAdSize.ANCHORED_ADAPTIVE_BANNER}
-      />
+      /> */}
       {/* </View> */}
     </View>
   );
