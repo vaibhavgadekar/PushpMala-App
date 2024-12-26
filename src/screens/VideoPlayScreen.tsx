@@ -1,6 +1,6 @@
 import {useNavigation, useRoute} from '@react-navigation/native';
 import React from 'react';
-import {StyleSheet, View} from 'react-native';
+import {StatusBar, StyleSheet, View} from 'react-native';
 import ArrowLeft from '../assets/icons/ArrowLeft';
 import PMHeader from '../components/molecules/PMHeader';
 import YTPlayerView from '../components/organisms/YTPlayerView';
@@ -15,6 +15,7 @@ export default function VideoPlayScreen() {
 
   return (
     <View style={styles.container}>
+      <StatusBar translucent={false} />
       <PMHeader
         title="सभी देवी-देवताओं के भजन"
         leftIcon={{

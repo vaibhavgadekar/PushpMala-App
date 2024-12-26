@@ -1,3 +1,5 @@
+import { Post } from "../../namespaces/Post";
+
 export type MediaListViewProps = {
   title: string;
   data: Post[]; //TODO need to be change

@@ -1,3 +1,4 @@
+import { God } from './God';
 import {Post} from './Post';
 
 export type RootStackParamList = {
@@ -5,4 +6,5 @@ export type RootStackParamList = {
   HomeScreen: undefined;
   AudioPlayScreen: {image: string};
   VideoPlayScreen: {postItem: Post; relatedVodeos: Post[]};
+  GodDetailsScreen: {godItem: God}
 };

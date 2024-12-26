@@ -12,7 +12,7 @@ export default function HomeScreenHeader() {
           text: <Text style={styles.mainText} />,
           orange: <Text style={styles.highlightText} />,
         }}>
-        {t('home:jaiShriRam', {name: 'Vaibhav'})}
+        {t('home:jaiShriRam', {name: 'भक्त'})}
       </Trans>
       <View style={styles.subTextContainer}>
         <Text style={styles.subText}>{t('home:greeting')}</Text>
