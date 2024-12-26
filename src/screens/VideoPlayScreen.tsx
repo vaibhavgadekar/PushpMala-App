@@ -1,4 +1,4 @@
-import {useNavigation} from '@react-navigation/native';
+import {useNavigation, useRoute} from '@react-navigation/native';
 import React from 'react';
 import {StyleSheet, View} from 'react-native';
 import ArrowLeft from '../assets/icons/ArrowLeft';
@@ -8,6 +8,8 @@ import {Design} from '../namespaces/Design';
 
 export default function VideoPlayScreen() {
   const navigation = useNavigation();
+  const route = useRoute();
+  const {postItem, relatedVodeos} = route?.params;
 
   const goBack = () => navigation.goBack();
 
@@ -20,7 +22,7 @@ export default function VideoPlayScreen() {
           onPress: goBack,
         }}
       />
-      <YTPlayerView />
+      <YTPlayerView postItem={postItem} relatedVodeos={relatedVodeos} />
     </View>
   );
 }

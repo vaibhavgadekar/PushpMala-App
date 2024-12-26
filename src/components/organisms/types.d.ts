@@ -1,6 +1,6 @@
 export type MediaListViewProps = {
   title: string;
-  data: any; //TODO need to be change
+  data: Post[]; //TODO need to be change
 };
 
 export type GodsListProps = {

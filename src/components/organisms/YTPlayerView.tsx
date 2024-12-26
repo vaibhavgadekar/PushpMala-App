@@ -1,33 +1,28 @@
-import {
-  View,
-  Text,
-  StyleSheet,
-  useWindowDimensions,
-  Pressable,
-  AppState,
-  Image,
-  ScrollView,
-} from 'react-native';
 import React, {useEffect, useRef, useState} from 'react';
+import {AppState, Pressable, ScrollView, View} from 'react-native';
+import Animated, {FadeIn} from 'react-native-reanimated';
 import YoutubePlayer, {
-  getYoutubeMeta,
   YoutubeIframeRef,
   YoutubeMeta,
 } from 'react-native-youtube-iframe';
-import Slider from '@react-native-community/slider';
 import {Design} from '../../namespaces/Design';
 import {PMTextLabel} from '../atoms';
-import Animated, {FadeIn} from 'react-native-reanimated';
 import YoutubeCard from '../molecules/YoutubeCard';
-export default function YTPlayerView() {
+import {Post} from '../../namespaces/Post';
+
+export type props = {
+  postItem: Post;
+  relatedVodeos: Post[];
+};
+export default function YTPlayerView({postItem, relatedVodeos}: props) {
   const playerRef = useRef<YoutubeIframeRef>(null);
-  const [videoId, setVideoId] = useState('zTzjxoLfShM');
+  const [videoId, setVideoId] = useState(postItem?.youtubeUrl);
   const [data, setData] = useState<YoutubeMeta | null>(null);
   const appState = useRef(AppState.currentState);
   // const [duration, setDuration] = useState<number>(0);
   // const [elapsed, setElapsed] = useState(0);
-  // const [showControls, setShowControls] = useState<boolean>(false);
-  // const [isReady, setIsReady] = useState<boolean>(false);
+  const [showControls, setShowControls] = useState<boolean>(false);
+  const [isReady, setIsReady] = useState<boolean>(false);
   // const {width} = useWindowDimensions();
   const [appStateVisible, setAppStateVisible] = useState(appState.current);
 
@@ -152,7 +147,7 @@ export default function YTPlayerView() {
       <ScrollView>
         <View style={{paddingHorizontal: Design.space.regular}}>
           <PMTextLabel
-            title={data?.title ?? ''}
+            title={postItem?.name ?? ''}
             style={{fontFamily: Design.fontFamily['KohinoorDevanagari-Medium']}}
           />
         </View>

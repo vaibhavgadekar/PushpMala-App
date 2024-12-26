@@ -1,19 +1,16 @@
-import {
-  View,
-  Text,
-  ScrollView,
-  FlatList,
-  StyleSheet,
-  Image,
-  ImageBackground,
-  Alert,
-} from 'react-native';
 import React from 'react';
-import {PMTextLabel} from '../atoms';
+import {
+  FlatList,
+  ImageBackground,
+  ScrollView,
+  StyleSheet,
+  View,
+} from 'react-native';
 import {Design} from '../../namespaces/Design';
+import {cdnUrl} from '../../utils/constant';
+import {PMTextLabel} from '../atoms';
 import ScalePress from '../atoms/ScalePress';
 import {GodsListProps} from './types';
-import {cdnUrl} from '../../utils/constant';
 
 export default function GodsList({data, title}: GodsListProps) {
   return (
@@ -40,8 +37,9 @@ export default function GodsList({data, title}: GodsListProps) {
           renderItem={({item, index}) => {
             return (
               <ScalePress
+                key={index}
                 style={styles.wrapper}
-                onPress={() => Alert.alert(JSON.stringify(item))}>
+                onPress={() => console.log(JSON.stringify(item))}>
                 <ImageBackground
                   source={{uri: cdnUrl + item?.imagePath}}
                   style={styles.image}>
