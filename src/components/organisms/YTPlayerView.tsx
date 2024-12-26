@@ -148,26 +148,23 @@ export default function YTPlayerView({postItem, relatedVodeos}: props) {
         <View style={{paddingHorizontal: Design.space.regular}}>
           <PMTextLabel
             title={postItem?.name ?? ''}
-            style={{fontFamily: Design.fontFamily['KohinoorDevanagari-Medium']}}
+            style={{
+              fontFamily: Design.fontFamily['KohinoorDevanagari-Medium'],
+              fontSize: Design.space.large,
+              color: Design.color.lightGray,
+            }}
           />
         </View>
-        {[
-          'AETFvQonfV8',
-          'NGeTpIrmAkg',
-          '_Z1fjiaCPEk',
-          '2k69JF5Fpa4',
-          'NGeTpIrmAkg',
-          '_Z1fjiaCPEk',
-        ].map((item, index) => {
+        {relatedVodeos?.map((item, index) => {
           return (
             <Animated.View entering={FadeIn.duration(1000).delay(index * 100)}>
               <YoutubeCard
-                id={item}
-                isCurrentPlaying={item === videoId}
+                id={item?.youtubeUrl}
+                isCurrentPlaying={item?._id === videoId}
                 key={index}
                 author_name="Demo"
                 onPress={selectedVideoId => setVideoId(selectedVideoId)}
-                title="Some"
+                title={item?.name}
               />
             </Animated.View>
           );
