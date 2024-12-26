@@ -11,8 +11,22 @@ import {cdnUrl} from '../../utils/constant';
 import {PMTextLabel} from '../atoms';
 import ScalePress from '../atoms/ScalePress';
 import {GodsListProps} from './types';
+import {useNavigation} from '@react-navigation/native';
+import {NativeStackNavigationProp} from '@react-navigation/native-stack';
+import {RootStackParamList} from '../../namespaces/RootStackParamList';
+import { God } from '../../namespaces/God';
 
 export default function GodsList({data, title}: GodsListProps) {
+  const navigation =
+    useNavigation<NativeStackNavigationProp<RootStackParamList>>();
+
+    console.log(data);
+    
+
+  const handelNavigation = (godItem: God) => {
+    navigation.navigate('GodDetailsScreen', {godItem});
+  };
+
   return (
     <View>
       <View style={styles.headerContainer}>
@@ -34,12 +48,12 @@ export default function GodsList({data, title}: GodsListProps) {
           data={data ?? []}
           directionalLockEnabled={true}
           alwaysBounceVertical={true}
-          renderItem={({item, index}) => {
+          renderItem={({item, index}) => {            
             return (
               <ScalePress
                 key={index}
                 style={styles.wrapper}
-                onPress={() => console.log(JSON.stringify(item))}>
+                onPress={()=>handelNavigation(item)}>
                 <ImageBackground
                   source={{uri: cdnUrl + item?.imagePath}}
                   style={styles.image}>
