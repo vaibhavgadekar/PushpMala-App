@@ -75,10 +75,11 @@ const styles = StyleSheet.create({
   flatListContent: {
     alignSelf: 'flex-start',
     marginLeft: Design.space.regular,
+    paddingRight: 16,
   },
   wrapper: {
     borderRadius: 10,
-    marginVertical: 5,
+    paddingVertical: 5,
     marginRight: 7,
     backgroundColor: '#ffffff',
   },

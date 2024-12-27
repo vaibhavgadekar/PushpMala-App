@@ -1,31 +1,30 @@
-import React, { useEffect } from 'react';
+import React, {useEffect} from 'react';
 import {ImageBackground, ScrollView, StatusBar, Text, View} from 'react-native';
 import PMHeader from '../components/molecules/PMHeader';
 import ArrowLeft from '../assets/icons/ArrowLeft';
 import NavigationCard from '../components/molecules/NavigationCard';
-import {useNavigation, useRoute} from '@react-navigation/native';
+import {useIsFocused, useNavigation, useRoute} from '@react-navigation/native';
 import {Design} from '../namespaces/Design';
 import MediaListViewLandscape from '../components/organisms/MediaListViewLandscape';
 import {cdnUrl} from '../utils/constant';
 import {PMTextLabel} from '../components/atoms';
-import Animated, { FadeIn, FadeInDown, FadeInUp } from 'react-native-reanimated';
-import { aaratiArray, bhajans } from './HomeScreen';
+import Animated, {FadeIn, FadeInDown, FadeInUp} from 'react-native-reanimated';
+import {aaratiArray, bhajans} from './HomeScreen';
 import MediaListView from '../components/organisms/MediaListView';
 
 const GodDetailsScreen = () => {
   const navigation = useNavigation();
-  const {params}=useRoute()
-  const { godItem}= params
-
+  const {params} = useRoute();
+  const {godItem} = params;
 
   useEffect(() => {
     StatusBar.setTranslucent(true);
     StatusBar.setBackgroundColor('transparent');
 
-   return ()=>{
-    StatusBar.setTranslucent(false);
-    StatusBar.setBackgroundColor('white');
-   }
+    return () => {
+      StatusBar.setTranslucent(false);
+      StatusBar.setBackgroundColor('white');
+    };
   }, [navigation]);
 
   const goBack = () => navigation.goBack();
@@ -68,7 +67,8 @@ const GodDetailsScreen = () => {
           style={{alignItems: 'center', marginTop: -84}}>
           <ImageBackground
             source={{uri: cdnUrl + godItem?.imagePath}}
-            style={{height: 150, width: 150}}></ImageBackground>
+            style={{height: 150, width: 150}}
+          />
         </Animated.View>
 
         {/* <View style={{justifyContent: 'center', alignItems: 'center', marginTop:16}}>
