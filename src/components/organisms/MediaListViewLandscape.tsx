@@ -18,7 +18,21 @@ export default function MediaListViewLandscape({
     useNavigation<NativeStackNavigationProp<RootStackParamList>>();
   return (
     <View style={styles.container}>
-      <PMTextLabel title={title} style={styles.titleLabel} />
+      <View
+        style={{
+          flexDirection: 'row',
+          alignItems: 'center',
+          marginLeft: 16,
+        }}>
+        <View
+          style={{
+            width: 4,
+            height: 20,
+            backgroundColor: Design.color.gray,
+          }}
+        />
+        <PMTextLabel title={title} style={styles.titleLabel} />
+      </View>
       <FlatList
         style={styles.flatList}
         horizontal
@@ -61,17 +75,14 @@ export default function MediaListViewLandscape({
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    marginTop: Design.space.regular,
   },
   titleLabel: {
-    color: Design.color.lightGray,
+    color: Design.color.black,
     fontSize: 20,
-    marginLeft: Design.space.regular,
+    marginLeft: Design.space.small,
     fontFamily: Design.fontFamily['KohinoorDevanagari-Medium'],
   },
-  flatList: {
-    marginTop: Design.space.small,
-  },
+  flatList: {},
   flatListContent: {
     alignSelf: 'flex-start',
     marginLeft: Design.space.regular,
@@ -91,7 +102,7 @@ const styles = StyleSheet.create({
   imageTitle: {
     fontSize: 14,
     marginTop: Design.space.small,
-    color: Design.color.primary,
+    color: Design.color.lightGray,
     width: 120,
     textAlign: 'center',
     fontFamily: Design.fontFamily['KohinoorDevanagari-Medium'],

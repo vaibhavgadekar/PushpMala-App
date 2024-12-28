@@ -1,29 +1,13 @@
-import React, {useRef} from 'react';
-import {
-  Image,
-  Platform,
-  ScrollView,
-  StatusBar,
-  StyleSheet,
-  View,
-} from 'react-native';
-import {
-  BannerAd,
-  BannerAdSize,
-  TestIds,
-  useForeground,
-} from 'react-native-google-mobile-ads';
-import ScalePress from '../components/atoms/ScalePress';
-import GodsCircularList from '../components/organisms/GodsCircularList';
+import React from 'react';
+import {ScrollView, StatusBar, StyleSheet, View} from 'react-native';
 import GodsList from '../components/organisms/GodsList';
 import HomeScreenHeader from '../components/organisms/HomeScreenHeader';
-import MediaListView from '../components/organisms/MediaListView';
-import {Design} from '../namespaces/Design';
-import {useFetchDashbordQuery} from '../redux/Dashbord/api';
-import {cdnUrl} from '../utils/constant';
-import {useFetchGodsQuery} from '../redux/god/api';
 import MediaListViewLandscape from '../components/organisms/MediaListViewLandscape';
+import {Design} from '../namespaces/Design';
 import {Post} from '../namespaces/Post';
+import {useFetchDashbordQuery} from '../redux/Dashbord/api';
+import {useFetchGodsQuery} from '../redux/god/api';
+import {cdnUrl} from '../utils/constant';
 
 export const aaratiArray: Post[] = [
   {
@@ -366,26 +350,7 @@ export const bhajans = [
 export const HomeScreen = () => {
   const {data} = useFetchDashbordQuery({});
   const {data: allGods, isLoading} = useFetchGodsQuery({});
-  const {gods} = data ?? {};
-  const bannerRef = useRef<BannerAd>(null);
-  const adUnitId = __DEV__
-    ? TestIds.ADAPTIVE_BANNER
-    : 'ca-app-pub-xxxxxxxxxxxxx/yyyyyyyyyyyyyy';
-
-  useForeground(() => {
-    Platform.OS === 'ios' && bannerRef.current?.load();
-  });
-
-  const imageArray = [
-    cdnUrl + 'pushpmala/image/musjy.webp',
-    cdnUrl + 'pushpmala/image/8oqye.webp',
-    cdnUrl + 'pushpmala/image/kxo2w.webp',
-    cdnUrl + 'pushpmala/image/v2oab.webp',
-    cdnUrl + 'pushpmala/image/htx8ek.webp',
-    cdnUrl + 'pushpmala/image/kylo7.webp',
-    cdnUrl + 'pushpmala/image/3mntc.webp',
-    cdnUrl + 'pushpmala/image/99bif.webp',
-  ];
+  const {gods, list1, list2, list3} = data ?? {};
 
   return (
     <View style={styles.conatiner}>
@@ -415,19 +380,24 @@ export const HomeScreen = () => {
         </View>
         <View>
           {!isLoading && (
-            <GodsList
-              title="सभी देवी-देवताओं के भजन"
-              data={allGods?.data?.data}
-            />
+            <>
+              <GodsList title="सभी देवी-देवताओं के भजन" data={gods} />
+              <View style={{paddingVertical: Design.space.large}}>
+                <MediaListViewLandscape
+                  title={'हनुमान भक्तिगीत'}
+                  data={list1?.posts}
+                />
+                <MediaListViewLandscape
+                  title={'गणेश आरती और भजन'}
+                  data={list2?.posts}
+                />
+                <MediaListViewLandscape
+                  title={list3?.label}
+                  data={list3?.posts}
+                />
+              </View>
+            </>
           )}
-          <MediaListViewLandscape title="Top Songs" data={aaratiArray} />
-          <MediaListView title="Top Bhajans" data={bhajans} />
-          <MediaListView title="Top Bhajans" data={bhajans} />
-          <MediaListView title="Top Bhajans" data={bhajans} />
-          <MediaListView title="Top Bhajans" data={bhajans} />
-          <MediaListView title="Top Bhajans" data={bhajans} />
-          <MediaListView title="Top Bhajans" data={bhajans} />
-          <MediaListView title="Top Bhajans" data={bhajans} />
         </View>
       </ScrollView>
 
