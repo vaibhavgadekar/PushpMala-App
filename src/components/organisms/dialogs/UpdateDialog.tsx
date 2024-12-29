@@ -3,21 +3,19 @@ import {
   Linking,
   Modal,
   Platform,
-  Pressable,
   StatusBar,
   StyleSheet,
   Text,
   View,
 } from 'react-native';
 
-
 import {Design} from '../../../namespaces/Design';
 
 import {Trans, useTranslation} from 'react-i18next';
-import {PMButton, PMTextLabel} from '../../atoms';
 import DeviceInfo from 'react-native-device-info';
-import ScalePress from '../../atoms/ScalePress';
 import {StoreURL} from '../../../utils/constant';
+import {PMButton, PMTextLabel} from '../../atoms';
+import ScalePress from '../../atoms/ScalePress';
 
 export type Props = {
   updateConfig: {
@@ -40,7 +38,7 @@ const UpdateDialog = ({updateConfig}: Props) => {
     } catch (error) {
       console.log({error});
     }
-  }, []);
+  }, [liveVersion, showUpdate]);
 
   const handleClose = () => {
     if (!isRequired) {
@@ -56,7 +54,6 @@ const UpdateDialog = ({updateConfig}: Props) => {
 
   return (
     <>
-      <StatusBar backgroundColor={'transparent'} />
       <View>
         <Modal
           animationType="fade"
@@ -68,9 +65,7 @@ const UpdateDialog = ({updateConfig}: Props) => {
             <View style={{flex: 1}}>
               <View style={styles.modalView}>
                 <ScalePress onPress={handleClose} style={styles.crossbutton}>
-                  <PMTextLabel
-                    title="X"
-                    style={styles.pmxcrossbutton}></PMTextLabel>
+                  <PMTextLabel title="X" style={styles.pmxcrossbutton} />
                 </ScalePress>
                 <View style={styles.modelViewHrLine} />
 

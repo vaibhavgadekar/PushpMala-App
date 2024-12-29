@@ -1,16 +1,12 @@
+import {useNavigation, useRoute} from '@react-navigation/native';
 import React, {useEffect} from 'react';
-import {ImageBackground, ScrollView, StatusBar, Text, View} from 'react-native';
-import PMHeader from '../components/molecules/PMHeader';
-import ArrowLeft from '../assets/icons/ArrowLeft';
-import NavigationCard from '../components/molecules/NavigationCard';
-import {useIsFocused, useNavigation, useRoute} from '@react-navigation/native';
-import {Design} from '../namespaces/Design';
-import MediaListViewLandscape from '../components/organisms/MediaListViewLandscape';
-import {cdnUrl} from '../utils/constant';
+import {ImageBackground, ScrollView, StatusBar, View} from 'react-native';
+import Animated, {FadeInDown} from 'react-native-reanimated';
 import {PMTextLabel} from '../components/atoms';
-import Animated, {FadeIn, FadeInDown, FadeInUp} from 'react-native-reanimated';
-import {aaratiArray, bhajans} from './HomeScreen';
-import MediaListView from '../components/organisms/MediaListView';
+import MediaListViewLandscape from '../components/organisms/MediaListViewLandscape';
+import {Design} from '../namespaces/Design';
+import {cdnUrl} from '../utils/constant';
+import {aaratiArray} from './HomeScreen';
 
 const GodDetailsScreen = () => {
   const navigation = useNavigation();
