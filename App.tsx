@@ -4,14 +4,14 @@
 //  *
 //  * @format
 //  */
-import React, {useEffect} from 'react';
+import React, { useEffect } from 'react';
 
-import {NavigationContainer} from '@react-navigation/native';
-import {RootStackNavigation} from './src/navigation/RootStackNavigation';
-import {Provider} from 'react-redux';
-import {store} from './src/redux/store';
+import { NavigationContainer } from '@react-navigation/native';
 import BootSplash from 'react-native-bootsplash';
 import TrackPlayer from 'react-native-track-player';
+import { Provider } from 'react-redux';
+import { RootStackNavigation } from './src/navigation/RootStackNavigation';
+import { store } from './src/redux/store';
 
 const App = () => {
   const hideSplash = async () => {
