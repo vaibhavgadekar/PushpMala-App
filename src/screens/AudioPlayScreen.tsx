@@ -3,7 +3,7 @@ import React from 'react';
 import {ScrollView, StyleSheet, View} from 'react-native';
 import ArrowLeft from '../assets/icons/ArrowLeft';
 import {PMTextLabel} from '../components/atoms';
-import PMHeader from '../components/molecules/PMHeader';
+import PMHeader from '../components/atoms/PMHeader';
 import MediaListView from '../components/organisms/MediaListView';
 import {Design} from '../namespaces/Design';
 import {cdnUrl} from '../utils/constant';

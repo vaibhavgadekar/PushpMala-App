@@ -1,19 +1,18 @@
 import React from 'react';
-import { ScrollView, StatusBar, StyleSheet, View } from 'react-native';
+import {ScrollView, StatusBar, StyleSheet, View} from 'react-native';
 import UpdateDialog from '../components/organisms/dialogs/UpdateDialog';
 import GodsList from '../components/organisms/GodsList';
 import HomeScreenHeader from '../components/organisms/HomeScreenHeader';
 import MediaListViewLandscape from '../components/organisms/MediaListViewLandscape';
-import { Design } from '../namespaces/Design';
-import { useFetchDashbordQuery } from '../redux/Dashbord/api';
+import {Design} from '../namespaces/Design';
+import {useFetchDashbordQuery} from '../redux/Dashbord/api';
+import HomeScreenLoader from '../components/molecules/HomeScreenLoader';
 
 export const HomeScreen = () => {
   const {data, isLoading: isDashboardLoading} = useFetchDashbordQuery({});
   const {gods, list1, list2, list3, updateConfig} = data ?? {};
 
-  
-
-  return ( 
+  return (
     <View style={styles.conatiner}>
       <StatusBar backgroundColor={'#FFFEFA'} barStyle={'dark-content'} />
       <ScrollView>
@@ -39,6 +38,7 @@ export const HomeScreen = () => {
             />
           </ScalePress> */}
         </View>
+        {isDashboardLoading && <HomeScreenLoader />}
         <View>
           {!isDashboardLoading && (
             <>
@@ -63,7 +63,7 @@ export const HomeScreen = () => {
         </View>
       </ScrollView>
 
-     {updateConfig && <UpdateDialog updateConfig={updateConfig} />}
+      {updateConfig && <UpdateDialog updateConfig={updateConfig} />}
     </View>
   );
 };

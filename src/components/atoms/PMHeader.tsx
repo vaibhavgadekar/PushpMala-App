@@ -2,8 +2,8 @@ import React from 'react';
 import {StatusBar, StyleSheet, View} from 'react-native';
 
 import {Design} from '../../namespaces/Design';
-import {PMTextLabel} from '../atoms';
-import ScalePress from '../atoms/ScalePress';
+import {PMTextLabel} from '.';
+import ScalePress from './ScalePress';
 
 export type HeaderProps = {
   title: string;

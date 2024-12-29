@@ -2,7 +2,7 @@ import {useNavigation, useRoute} from '@react-navigation/native';
 import React from 'react';
 import {StatusBar, StyleSheet, View} from 'react-native';
 import ArrowLeft from '../assets/icons/ArrowLeft';
-import PMHeader from '../components/molecules/PMHeader';
+import PMHeader from '../components/atoms/PMHeader';
 import YTPlayerView from '../components/organisms/YTPlayerView';
 import {Design} from '../namespaces/Design';
 
