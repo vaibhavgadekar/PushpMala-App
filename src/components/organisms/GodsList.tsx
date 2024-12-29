@@ -19,8 +19,6 @@ import { God } from '../../namespaces/God';
 export default function GodsList({data, title}: GodsListProps) {
   const navigation =
     useNavigation<NativeStackNavigationProp<RootStackParamList>>();
-
-    console.log(data);
     
 
   const handelNavigation = (godItem: God) => {

@@ -28,7 +28,6 @@ const bhajans = [
 export default function AudioPlayScreen() {
   const navigation = useNavigation();
   const {params} = useRoute<RouteProp<RootStackParamList, 'AudioPlayScreen'>>();
-  console.log(params);
 
   const goBack = () => navigation.goBack();
   const aartiLyrics = '';

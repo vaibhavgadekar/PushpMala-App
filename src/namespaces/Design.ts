@@ -54,5 +54,6 @@ export namespace Design {
     lightGray: '#595D62',
     baseLight: '#F2F4F8',
     lightYellow: '#FFFBE8',
+    update:"#FFFEE1"
   };
 }
