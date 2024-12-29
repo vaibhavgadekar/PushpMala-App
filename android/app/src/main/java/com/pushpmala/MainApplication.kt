@@ -1,4 +1,4 @@
-package com.testing
+package com.pushpmala
 
 import android.app.Application
 import com.facebook.react.PackageList
