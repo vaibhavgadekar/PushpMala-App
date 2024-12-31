@@ -1,5 +1,5 @@
 import React from 'react';
-import {ScrollView, StatusBar, StyleSheet, View} from 'react-native';
+import {Button, ScrollView, StatusBar, StyleSheet, View} from 'react-native';
 import UpdateDialog from '../components/organisms/dialogs/UpdateDialog';
 import GodsList from '../components/organisms/GodsList';
 import HomeScreenHeader from '../components/organisms/HomeScreenHeader';
@@ -7,6 +7,8 @@ import MediaListViewLandscape from '../components/organisms/MediaListViewLandsca
 import {Design} from '../namespaces/Design';
 import {useFetchDashbordQuery} from '../redux/Dashbord/api';
 import HomeScreenLoader from '../components/molecules/HomeScreenLoader';
+import { localNotification } from '../utils/localNotification';
+
 
 export const HomeScreen = () => {
   const {data, isLoading: isDashboardLoading} = useFetchDashbordQuery({});
@@ -15,55 +17,7 @@ export const HomeScreen = () => {
   return (
     <View style={styles.conatiner}>
       <StatusBar backgroundColor={'#FFFEFA'} barStyle={'dark-content'} />
-      <ScrollView>
-        <View style={styles.headerContainer}>
-          <HomeScreenHeader />
-          {/* <GodsCircularList data={gods} /> */}
-          {/* <ScalePress
-            onPress={() => console.log('oks')}
-            style={{
-              justifyContent: 'center',
-              alignItems: 'center',
-              width: '100%',
-            }}>
-            <Image
-              source={require('../assets/images/share-pushpmala.png')}
-              style={{
-                height: 140,
-                width: '90%',
-                marginTop: 10,
-                alignSelf: 'center',
-              }}
-              // resizeMode="contain"
-            />
-          </ScalePress> */}
-        </View>
-        {isDashboardLoading && <HomeScreenLoader />}
-        <View>
-          {!isDashboardLoading && (
-            <>
-              <GodsList title="सभी देवी-देवताओं के भजन" data={gods} />
-
-              <View style={{paddingVertical: Design.space.large}}>
-                <MediaListViewLandscape
-                  title={'हनुमान भक्तिगीत'}
-                  data={list1?.posts}
-                />
-                <MediaListViewLandscape
-                  title={'गणेश आरती और भजन'}
-                  data={list2?.posts}
-                />
-                <MediaListViewLandscape
-                  title={list3?.label}
-                  data={list3?.posts}
-                />
-              </View>
-            </>
-          )}
-        </View>
-      </ScrollView>
-
-      {updateConfig && <UpdateDialog updateConfig={updateConfig} />}
+      <Button title="Send Notification" onPress={localNotification}></Button>
     </View>
   );
 };
