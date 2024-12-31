@@ -20,7 +20,7 @@ export default function VideoPlayScreen() {
   useEffect(() => {
     const timer = setTimeout(() => {
       setIsLoading(false);
-    }, 3000); 
+    }, 300);
     return () => clearTimeout(timer);
   }, []);
 

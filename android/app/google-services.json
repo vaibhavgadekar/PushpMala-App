@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "1056780470107",
+    "project_id": "pushpmala-c6beb",
+    "storage_bucket": "pushpmala-c6beb.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1056780470107:android:7ee54475771ce6d48d3c7e",
+        "android_client_info": {
+          "package_name": "com.pushpmala"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDZKEE40tRjQEZ-SAj6kxRPjg4KZdop-nc"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

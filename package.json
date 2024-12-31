@@ -12,6 +12,8 @@
   "dependencies": {
     "@expo/vector-icons": "^14.0.4",
     "@react-native-community/slider": "^4.5.5",
+    "@react-native-firebase/analytics": "^21.6.1",
+    "@react-native-firebase/app": "^21.6.1",
     "@react-navigation/native": "^6.1.18",
     "@react-navigation/native-stack": "^6.11.0",
     "@reduxjs/toolkit": "^2.2.7",
