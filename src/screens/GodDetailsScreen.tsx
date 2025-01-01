@@ -15,11 +15,15 @@ import {cdnUrl} from '../utils/constant';
 import {useFetPostsByGodIdQuery} from '../redux/god/api';
 import {Post} from '../namespaces/Post';
 
+import GodScreenLoader from '../components/molecules/GodScreenLoader';
+
 const GodDetailsScreen = () => {
   const navigation = useNavigation();
   const {params} = useRoute();
   const {godItem} = params;
-  const {data} = useFetPostsByGodIdQuery({id: godItem?._id});
+  const {data, isLoading: isGodLoading} = useFetPostsByGodIdQuery({
+    id: godItem?._id,
+  });
 
   const filterResponse = (postCategoryType: string): Post[] => {
     return data?.data?.data?.filter(
@@ -57,18 +61,23 @@ const GodDetailsScreen = () => {
             style={styles.profileImage}
           />
         </Animated.View>
-        <MediaListViewLandscape
-          title="Top Arati"
-          data={filterResponse('ARATI')}
-        />
-        <MediaListViewLandscape
-          title="Top Bhajans"
-          data={filterResponse('BHAJAN')}
-        />
-        <MediaListViewLandscape
-          title="Top Mantra"
-          data={filterResponse('MANTRA')}
-        />
+        {isGodLoading && <GodScreenLoader />}
+        {!isGodLoading && (
+          <>  
+            <MediaListViewLandscape
+              title="Top Arati"
+              data={filterResponse('ARATI')}
+            />
+            <MediaListViewLandscape
+              title="Top Bhajans"
+              data={filterResponse('BHAJAN')}
+            />
+            <MediaListViewLandscape
+              title="Top Mantra"
+              data={filterResponse('MANTRA')}
+            />
+          </>
+        )}
       </ScrollView>
     </View>
   );
