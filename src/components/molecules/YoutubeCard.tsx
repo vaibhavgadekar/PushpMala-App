@@ -8,7 +8,7 @@ export type props = {
   title: string;
   author_name: string;
   isCurrentPlaying: boolean;
-  onPress: (selectedVideoId: string) => void;
+  onPress: () => void;
 };
 
 export default function YoutubeCard({
@@ -21,7 +21,7 @@ export default function YoutubeCard({
   return (
     <View>
       <Pressable
-        onPress={() => onPress(id)}
+        onPress={onPress}
         style={[
           styles.pressableContainer,
           isCurrentPlaying && styles.currentPlayingBackground,

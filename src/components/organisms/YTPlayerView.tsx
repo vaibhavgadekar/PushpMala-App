@@ -17,7 +17,7 @@ export type props = {
 };
 export default function YTPlayerView({postItem, relatedVodeos}: props) {
   const playerRef = useRef<YoutubeIframeRef>(null);
-  const [videoId, setVideoId] = useState(postItem?.youtubeUrl);
+  const [videoId, setVideo] = useState<Post>(postItem);
   const {t} = useTranslation();
   const [errors, setErrors] = useState<string | null>(null);
   const [data, setData] = useState<YoutubeMeta | null>(null);
@@ -128,7 +128,7 @@ export default function YTPlayerView({postItem, relatedVodeos}: props) {
             volume={100}
             play={true}
             forceAndroidAutoplay={true}
-            videoId={videoId}
+            videoId={videoId?.youtubeUrl}
             onReady={() => setIsReady(true)}
             onError={setErrors}
             baseUrlOverride="https://matrimony-fe-swart.vercel.app/YTIframe.html"
@@ -166,7 +166,7 @@ export default function YTPlayerView({postItem, relatedVodeos}: props) {
       <ScrollView>
         <View style={{paddingHorizontal: Design.space.regular}}>
           <PMTextLabel
-            title={postItem?.name ?? ''}
+            title={videoId?.name ?? ''}
             style={{
               fontFamily: Design.fontFamily['KohinoorDevanagari-Medium'],
               fontSize: Design.space.large,
@@ -177,14 +177,14 @@ export default function YTPlayerView({postItem, relatedVodeos}: props) {
         {relatedVodeos?.map((item, index) => {
           return (
             <Animated.View
-              key={item?.youtubeUrl}
+              key={`${item?.youtubeUrl}+${index}`}
               entering={FadeIn.duration(1000).delay(index * 100)}>
               <YoutubeCard
                 id={item?.youtubeUrl}
-                isCurrentPlaying={item?._id === videoId}
+                isCurrentPlaying={item?._id === videoId._id}
                 key={index}
                 author_name=""
-                onPress={selectedVideoId => setVideoId(selectedVideoId)}
+                onPress={() => setVideo(item)}
                 title={item?.name}
               />
             </Animated.View>
