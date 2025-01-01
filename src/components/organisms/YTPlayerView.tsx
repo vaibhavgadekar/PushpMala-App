@@ -1,5 +1,5 @@
 import React, {useEffect, useRef, useState} from 'react';
-import {AppState, Pressable, ScrollView, View} from 'react-native';
+import {AppState, Pressable, ScrollView, StyleSheet, View} from 'react-native';
 import Animated, {FadeIn} from 'react-native-reanimated';
 import YoutubePlayer, {
   YoutubeIframeRef,
@@ -9,6 +9,7 @@ import {Design} from '../../namespaces/Design';
 import {PMTextLabel} from '../atoms';
 import YoutubeCard from '../molecules/YoutubeCard';
 import {Post} from '../../namespaces/Post';
+import {useTranslation} from 'react-i18next';
 
 export type props = {
   postItem: Post;
@@ -17,6 +18,8 @@ export type props = {
 export default function YTPlayerView({postItem, relatedVodeos}: props) {
   const playerRef = useRef<YoutubeIframeRef>(null);
   const [videoId, setVideoId] = useState(postItem?.youtubeUrl);
+  const {t} = useTranslation();
+  const [errors, setErrors] = useState<string | null>(null);
   const [data, setData] = useState<YoutubeMeta | null>(null);
   const appState = useRef(AppState.currentState);
   // const [duration, setDuration] = useState<number>(0);
@@ -97,29 +100,45 @@ export default function YTPlayerView({postItem, relatedVodeos}: props) {
   //   playerRef.current?.seekTo(seek, true);
   // };
 
+  useEffect(() => {
+    if (errors) {
+      setErrors(null);
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [videoId]);
+
   return (
     <>
       <Pressable
-        style={{
-          height: 250,
-        }}
+        style={{height: 250}}
         onPress={() => setShowControls(prev => !prev)}>
         {/* Added this for the custom controller */}
         {/* <View pointerEvents="none"> */}
-        <YoutubePlayer
-          ref={playerRef}
-          height={300}
-          volume={100}
-          play={true}
-          videoId={videoId}
-          onReady={() => setIsReady(true)}
-          baseUrlOverride="https://matrimony-fe-swart.vercel.app/YTIframe.html"
-          initialPlayerParams={{
-            controls: true,
-            loop: false,
-            preventFullScreen: false,
-          }}
-        />
+        {errors ? (
+          <View style={styles.invalidVideoContainer}>
+            <PMTextLabel
+              title={t('common:invalidVideo')}
+              style={styles.invalidTitle}
+            />
+          </View>
+        ) : (
+          <YoutubePlayer
+            ref={playerRef}
+            height={300}
+            volume={100}
+            play={true}
+            forceAndroidAutoplay={true}
+            videoId={videoId}
+            onReady={() => setIsReady(true)}
+            onError={setErrors}
+            baseUrlOverride="https://matrimony-fe-swart.vercel.app/YTIframe.html"
+            initialPlayerParams={{
+              controls: true,
+              loop: false,
+              preventFullScreen: false,
+            }}
+          />
+        )}
         {/* </View> */}
         {/* {showControls && isReady && (
           <View
@@ -157,12 +176,14 @@ export default function YTPlayerView({postItem, relatedVodeos}: props) {
         </View>
         {relatedVodeos?.map((item, index) => {
           return (
-            <Animated.View entering={FadeIn.duration(1000).delay(index * 100)}>
+            <Animated.View
+              key={item?.youtubeUrl}
+              entering={FadeIn.duration(1000).delay(index * 100)}>
               <YoutubeCard
                 id={item?.youtubeUrl}
                 isCurrentPlaying={item?._id === videoId}
                 key={index}
-                author_name="Demo"
+                author_name=""
                 onPress={selectedVideoId => setVideoId(selectedVideoId)}
                 title={item?.name}
               />
@@ -173,3 +194,17 @@ export default function YTPlayerView({postItem, relatedVodeos}: props) {
     </>
   );
 }
+
+const styles = StyleSheet.create({
+  invalidVideoContainer: {
+    height: 250,
+    width: '100%',
+    backgroundColor: Design.color.baseLight,
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+  invalidTitle: {
+    fontFamily: Design.fontFamily['KohinoorDevanagari-Medium'],
+    color: Design.color.lightGray,
+  },
+});

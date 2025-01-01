@@ -77,7 +77,7 @@ const styles = StyleSheet.create({
   },
   titleText: {
     fontFamily: Design.fontFamily['KohinoorDevanagari-Medium'],
-    fontSize: Design.fontSize.small,
+    fontSize: Design.fontSize.regular,
     marginLeft: Design.space.xsmall,
   },
   authorText: {
