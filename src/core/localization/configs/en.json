@@ -4,14 +4,14 @@
     "mobileNoRequired": "Mobile number is required",
     "mobileNumberTenDigit": "Phone number must be 10 digit",
     "hello": "By continuing you agree to our Terms of Conditions and Privacy Policy",
-    "changeLang":{
+    "changeLang": {
       "title": "Select Language",
       "infoText": "Select your preferred language from the list below. Changing the language will update the app's display language to enhance your experience."
     },
-    "agreeDialog":{
-      "infotext":"Welcome to Pushpamala App. Our aim is to connect more than 1 crore Hindus. To cover the costs of servers, maintenance, support and development we are displaying advertisements in the app. Please give us your consent by clicking 'Agree'.",
-      "noticeText":"We do not store any media on our servers. Our platform only lists content that is publicly available on the internet. If you have any copyright concerns, please contact us at abc@gmail.com.",
-      "buttonTitle":"Agree"
+    "agreeDialog": {
+      "infotext": "Welcome to Pushpamala App. Our aim is to connect more than 1 crore Hindus. To cover the costs of servers, maintenance, support and development we are displaying advertisements in the app. Please give us your consent by clicking 'Agree'.",
+      "noticeText": "We do not store any media on our servers. Our platform only lists content that is publicly available on the internet. If you have any copyright concerns, please contact us at abc@gmail.com.",
+      "buttonTitle": "Agree"
     }
   },
   "userOnboard": {
@@ -27,12 +27,18 @@
   "home": {
     "jaiShriRam": "<text>Jai Shri Ram, <orange>{{name}}!</orange></text>",
     "greeting": "Start your day with the blessings of God.",
-    "updateDialog":{
-      "title":" पुष्पमाला का नया अपडेट उपलब्ध",
-      "discription":"<text>अब सुनें नए <bold>भजन और आरतियाँ</bold>, करें लाइव दर्शन और पूजा बुकिंग पहले से भी आसान। <bold>बेहतर प्रदर्शन और नई सुविधाओं का आनंद लेने के लिए आज ही अपडेट करें!</bold></text>",
-      "info":" नए फीचर्स के साथ आपकी भक्ति यात्रा को और भी खास बनाया गया है।",
-      "update":"अभी अपडेट करें"
+    "updateDialog": {
+      "title": " पुष्पमाला का नया अपडेट उपलब्ध",
+      "discription": "<text>अब सुनें नए <bold>भजन और आरतियाँ</bold>, करें लाइव दर्शन और पूजा बुकिंग पहले से भी आसान। <bold>बेहतर प्रदर्शन और नई सुविधाओं का आनंद लेने के लिए आज ही अपडेट करें!</bold></text>",
+      "info": " नए फीचर्स के साथ आपकी भक्ति यात्रा को और भी खास बनाया गया है।",
+      "update": "अभी अपडेट करें"
+    },
+    "postLists": {
+      "list1": "Hanuman Devotional Songs",
+      "list2": "Ganesh Aarti and Bhajans",
+      "list3": "Worship of Lord Bholenath",
+      "list4": "Devotion to Lord Shani",
+      "list5": "Glory of Lord Ram's Name"
     }
   }
-
 }
