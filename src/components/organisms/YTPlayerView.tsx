@@ -10,6 +10,8 @@ import {PMTextLabel} from '../atoms';
 import YoutubeCard from '../molecules/YoutubeCard';
 import {Post} from '../../namespaces/Post';
 import {useTranslation} from 'react-i18next';
+import {useFetchDashbordQuery} from '../../redux/Dashbord/api';
+import {iFrameDefaultBaseUrl} from '../../utils/constant';
 
 export type props = {
   postItem: Post;
@@ -17,6 +19,10 @@ export type props = {
 };
 export default function YTPlayerView({postItem, relatedVodeos}: props) {
   const playerRef = useRef<YoutubeIframeRef>(null);
+  const {data: respData} = useFetchDashbordQuery({});
+  const {youtubeConfig} = respData ?? {};
+  console.log({youtubeConfig});
+
   const [videoId, setVideo] = useState<Post>(postItem);
   const {t} = useTranslation();
   const [errors, setErrors] = useState<string | null>(null);
@@ -131,7 +137,9 @@ export default function YTPlayerView({postItem, relatedVodeos}: props) {
             videoId={videoId?.youtubeUrl}
             onReady={() => setIsReady(true)}
             onError={setErrors}
-            baseUrlOverride="https://matrimony-fe-swart.vercel.app/YTIframe.html"
+            baseUrlOverride={
+              youtubeConfig?.iframeBaseURL ?? iFrameDefaultBaseUrl
+            }
             initialPlayerParams={{
               controls: true,
               loop: false,
