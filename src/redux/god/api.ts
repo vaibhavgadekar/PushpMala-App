@@ -14,7 +14,15 @@ export const God = createApi({
         };
       },
     }),
+    fetPostsByGodId: builder.query({
+      query: ({id}: {id: string}) => {
+        return {
+          url: 'admin/post/' + id,
+          method: 'get',
+        };
+      },
+    }),
   }),
 });
 
-export const {useFetchGodsQuery} = God;
+export const {useFetchGodsQuery, useFetPostsByGodIdQuery} = God;
