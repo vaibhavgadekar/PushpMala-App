@@ -27,13 +27,13 @@ export default function VideoPlayScreen() {
   return (
     <View style={styles.container}>
       <StatusBar translucent={false} />
-      <PMHeader
+      {/* <PMHeader
         title="सभी देवी-देवताओं के भजन"
         leftIcon={{
           icon: <ArrowLeft />,
           onPress: goBack,
         }}
-      />
+      /> */}
       {isLoading && <YoutubeScreenLoader />}
 
       {!isLoading && (

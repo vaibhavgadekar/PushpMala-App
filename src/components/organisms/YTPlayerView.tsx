@@ -1,5 +1,13 @@
 import React, {useEffect, useRef, useState} from 'react';
-import {AppState, Pressable, ScrollView, StyleSheet, View} from 'react-native';
+import {
+  AppState,
+  Dimensions,
+  FlatList,
+  Pressable,
+  ScrollView,
+  StyleSheet,
+  View,
+} from 'react-native';
 import Animated, {FadeIn} from 'react-native-reanimated';
 import YoutubePlayer, {
   YoutubeIframeRef,
@@ -21,7 +29,6 @@ export default function YTPlayerView({postItem, relatedVodeos}: props) {
   const playerRef = useRef<YoutubeIframeRef>(null);
   const {data: respData} = useFetchDashbordQuery({});
   const {youtubeConfig} = respData ?? {};
-  console.log({youtubeConfig});
 
   const [videoId, setVideo] = useState<Post>(postItem);
   const {t} = useTranslation();
@@ -50,7 +57,6 @@ export default function YTPlayerView({postItem, relatedVodeos}: props) {
 
       appState.current = nextAppState;
       setAppStateVisible(appState.current);
-      console.log('AppState', appState.current);
     });
 
     return () => {
@@ -114,27 +120,19 @@ export default function YTPlayerView({postItem, relatedVodeos}: props) {
   }, [videoId]);
 
   return (
-    <>
-      <Pressable
-        style={{height: 250}}
-        onPress={() => setShowControls(prev => !prev)}>
-        {/* Added this for the custom controller */}
-        {/* <View pointerEvents="none"> */}
-        {errors ? (
-          <View style={styles.invalidVideoContainer}>
-            <PMTextLabel
-              title={t('common:invalidVideo')}
-              style={styles.invalidTitle}
-            />
-          </View>
-        ) : (
+    <FlatList
+      data={['2ZKSdkpzHOM', 'ZddR1nV-ygA', 'EZYBybuKYj4', 'F2klvYe4ZUg']}
+      pagingEnabled
+      renderItem={({item, index}) => {
+        return (
           <YoutubePlayer
             ref={playerRef}
-            height={300}
+            height={Dimensions.get('window').height}
             volume={100}
             play={true}
             forceAndroidAutoplay={true}
-            videoId={videoId?.youtubeUrl}
+            videoId={item}
+            contentScale={0}
             onReady={() => setIsReady(true)}
             onError={setErrors}
             baseUrlOverride={
@@ -145,62 +143,107 @@ export default function YTPlayerView({postItem, relatedVodeos}: props) {
               loop: false,
               preventFullScreen: false,
             }}
-          />
-        )}
-        {/* </View> */}
-        {/* {showControls && isReady && (
-          <View
-            style={{
-              position: 'absolute',
-              bottom: 0,
-              marginBottom: 35,
-              justifyContent: 'center',
-              alignItems: 'center',
-            }}>
-            <View style={styles.sliderContainer}>
-              <Slider
-                style={{width: width * 0.75}}
-                maximumValue={duration}
-                // value={30}
-                minimumTrackTintColor={'#FFF'}
-                maximumTrackTintColor="#D9D9D9"
-                thumbTintColor={'#FFF'}
-                onSlidingComplete={handleChange}
-              />
-            </View>
-          </View>
-        )} */}
-      </Pressable>
-      <ScrollView>
-        <View style={{paddingHorizontal: Design.space.regular}}>
-          <PMTextLabel
-            title={videoId?.name ?? ''}
-            style={{
-              fontFamily: Design.fontFamily['KohinoorDevanagari-Medium'],
-              fontSize: Design.space.large,
-              color: Design.color.lightGray,
+            webViewProps={{
+              injectedJavaScript: `
+            var element = document.getElementsByClassName('container')[0];
+            element.style.position = 'unset';
+            true;
+          `,
             }}
           />
-        </View>
-        {relatedVodeos?.map((item, index) => {
-          return (
-            <Animated.View
-              key={`${item?.youtubeUrl}+${index}`}
-              entering={FadeIn.duration(1000).delay(index * 100)}>
-              <YoutubeCard
-                id={item?.youtubeUrl}
-                isCurrentPlaying={item?._id === videoId._id}
-                key={index}
-                author_name=""
-                onPress={() => setVideo(item)}
-                title={item?.name}
-              />
-            </Animated.View>
-          );
-        })}
-      </ScrollView>
-    </>
+        );
+      }}
+    />
   );
+
+  // return (
+  //   <>
+  //     <Pressable
+  //       style={{height: 250}}
+  //       onPress={() => setShowControls(prev => !prev)}>
+  //       {/* Added this for the custom controller */}
+  //       {/* <View pointerEvents="none"> */}
+  //       {errors ? (
+  //         <View style={styles.invalidVideoContainer}>
+  //           <PMTextLabel
+  //             title={t('common:invalidVideo')}
+  //             style={styles.invalidTitle}
+  //           />
+  //         </View>
+  //       ) : (
+  //         <YoutubePlayer
+  //           ref={playerRef}
+  //           height={Dimensions.get('window').height}
+  //           volume={100}
+  //           play={true}
+  //           forceAndroidAutoplay={true}
+  //           videoId={'2ZKSdkpzHOM'}
+  //           onReady={() => setIsReady(true)}
+  //           onError={setErrors}
+  //           baseUrlOverride={
+  //             youtubeConfig?.iframeBaseURL ?? iFrameDefaultBaseUrl
+  //           }
+  //           initialPlayerParams={{
+  //             controls: true,
+  //             loop: false,
+  //             preventFullScreen: false,
+  //           }}
+  //         />
+  //       )}
+  //       {/* </View> */}
+  //       {/* {showControls && isReady && (
+  //         <View
+  //           style={{
+  //             position: 'absolute',
+  //             bottom: 0,
+  //             marginBottom: 35,
+  //             justifyContent: 'center',
+  //             alignItems: 'center',
+  //           }}>
+  //           <View style={styles.sliderContainer}>
+  //             <Slider
+  //               style={{width: width * 0.75}}
+  //               maximumValue={duration}
+  //               // value={30}
+  //               minimumTrackTintColor={'#FFF'}
+  //               maximumTrackTintColor="#D9D9D9"
+  //               thumbTintColor={'#FFF'}
+  //               onSlidingComplete={handleChange}
+  //             />
+  //           </View>
+  //         </View>
+  //       )} */}
+  //     </Pressable>
+  //     <ScrollView>
+  //       <View style={{paddingHorizontal: Design.space.regular}}>
+  //         <PMTextLabel
+  //           title={videoId?.name ?? ''}
+  //           style={{
+  //             fontFamily: Design.fontFamily['KohinoorDevanagari-Medium'],
+  //             fontSize: Design.space.large,
+  //             color: Design.color.lightGray,
+  //           }}
+  //         />
+  //       </View>
+  //       {relatedVodeos?.map((item, index) => {
+  //         return (
+  //           <Animated.View
+  //             key={`${item?.youtubeUrl}+${index}`}
+  //             entering={FadeIn.duration(1000).delay(index * 100)}>
+  //             <YoutubeCard
+  //               id={item?.youtubeUrl}
+  //               isCurrentPlaying={item?._id === videoId._id}
+  //               key={index}
+  //               author_name=""
+  //               onPress={() => setVideo(item)}
+  //               title={item?.name}
+  //             />
+  //           </Animated.View>
+  //         );
+  //       })}
+  //     </ScrollView>
+  //   </>
+  // );
 }
 
 const styles = StyleSheet.create({
