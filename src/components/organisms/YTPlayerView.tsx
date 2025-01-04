@@ -1,5 +1,5 @@
 import React, {useEffect, useRef, useState} from 'react';
-import {AppState, Pressable, ScrollView, View} from 'react-native';
+import {AppState, Pressable, ScrollView, StyleSheet, View} from 'react-native';
 import Animated, {FadeIn} from 'react-native-reanimated';
 import YoutubePlayer, {
   YoutubeIframeRef,
@@ -9,6 +9,9 @@ import {Design} from '../../namespaces/Design';
 import {PMTextLabel} from '../atoms';
 import YoutubeCard from '../molecules/YoutubeCard';
 import {Post} from '../../namespaces/Post';
+import {useTranslation} from 'react-i18next';
+import {useFetchDashbordQuery} from '../../redux/Dashbord/api';
+import {iFrameDefaultBaseUrl} from '../../utils/constant';
 
 export type props = {
   postItem: Post;
@@ -16,7 +19,13 @@ export type props = {
 };
 export default function YTPlayerView({postItem, relatedVodeos}: props) {
   const playerRef = useRef<YoutubeIframeRef>(null);
-  const [videoId, setVideoId] = useState(postItem?.youtubeUrl);
+  const {data: respData} = useFetchDashbordQuery({});
+  const {youtubeConfig} = respData ?? {};
+  console.log({youtubeConfig});
+
+  const [videoId, setVideo] = useState<Post>(postItem);
+  const {t} = useTranslation();
+  const [errors, setErrors] = useState<string | null>(null);
   const [data, setData] = useState<YoutubeMeta | null>(null);
   const appState = useRef(AppState.currentState);
   // const [duration, setDuration] = useState<number>(0);
@@ -97,29 +106,47 @@ export default function YTPlayerView({postItem, relatedVodeos}: props) {
   //   playerRef.current?.seekTo(seek, true);
   // };
 
+  useEffect(() => {
+    if (errors) {
+      setErrors(null);
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [videoId]);
+
   return (
     <>
       <Pressable
-        style={{
-          height: 250,
-        }}
+        style={{height: 250}}
         onPress={() => setShowControls(prev => !prev)}>
         {/* Added this for the custom controller */}
         {/* <View pointerEvents="none"> */}
-        <YoutubePlayer
-          ref={playerRef}
-          height={300}
-          volume={100}
-          play={true}
-          videoId={videoId}
-          onReady={() => setIsReady(true)}
-          baseUrlOverride="https://matrimony-fe-swart.vercel.app/YTIframe.html"
-          initialPlayerParams={{
-            controls: true,
-            loop: false,
-            preventFullScreen: false,
-          }}
-        />
+        {errors ? (
+          <View style={styles.invalidVideoContainer}>
+            <PMTextLabel
+              title={t('common:invalidVideo')}
+              style={styles.invalidTitle}
+            />
+          </View>
+        ) : (
+          <YoutubePlayer
+            ref={playerRef}
+            height={300}
+            volume={100}
+            play={true}
+            forceAndroidAutoplay={true}
+            videoId={videoId?.youtubeUrl}
+            onReady={() => setIsReady(true)}
+            onError={setErrors}
+            baseUrlOverride={
+              youtubeConfig?.iframeBaseURL ?? iFrameDefaultBaseUrl
+            }
+            initialPlayerParams={{
+              controls: true,
+              loop: false,
+              preventFullScreen: false,
+            }}
+          />
+        )}
         {/* </View> */}
         {/* {showControls && isReady && (
           <View
@@ -147,7 +174,7 @@ export default function YTPlayerView({postItem, relatedVodeos}: props) {
       <ScrollView>
         <View style={{paddingHorizontal: Design.space.regular}}>
           <PMTextLabel
-            title={postItem?.name ?? ''}
+            title={videoId?.name ?? ''}
             style={{
               fontFamily: Design.fontFamily['KohinoorDevanagari-Medium'],
               fontSize: Design.space.large,
@@ -157,13 +184,15 @@ export default function YTPlayerView({postItem, relatedVodeos}: props) {
         </View>
         {relatedVodeos?.map((item, index) => {
           return (
-            <Animated.View entering={FadeIn.duration(1000).delay(index * 100)}>
+            <Animated.View
+              key={`${item?.youtubeUrl}+${index}`}
+              entering={FadeIn.duration(1000).delay(index * 100)}>
               <YoutubeCard
                 id={item?.youtubeUrl}
-                isCurrentPlaying={item?._id === videoId}
+                isCurrentPlaying={item?._id === videoId._id}
                 key={index}
-                author_name="Demo"
-                onPress={selectedVideoId => setVideoId(selectedVideoId)}
+                author_name=""
+                onPress={() => setVideo(item)}
                 title={item?.name}
               />
             </Animated.View>
@@ -173,3 +202,17 @@ export default function YTPlayerView({postItem, relatedVodeos}: props) {
     </>
   );
 }
+
+const styles = StyleSheet.create({
+  invalidVideoContainer: {
+    height: 250,
+    width: '100%',
+    backgroundColor: Design.color.baseLight,
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+  invalidTitle: {
+    fontFamily: Design.fontFamily['KohinoorDevanagari-Medium'],
+    color: Design.color.lightGray,
+  },
+});

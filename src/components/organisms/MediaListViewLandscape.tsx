@@ -16,21 +16,14 @@ export default function MediaListViewLandscape({
 }: MediaListViewProps) {
   const navigation =
     useNavigation<NativeStackNavigationProp<RootStackParamList>>();
+  if (data?.length <= 0) {
+    return <></>;
+  }
+
   return (
     <View style={styles.container}>
-      <View
-        style={{
-          flexDirection: 'row',
-          alignItems: 'center',
-          marginLeft: 16,
-        }}>
-        <View
-          style={{
-            width: 4,
-            height: 20,
-            backgroundColor: Design.color.gray,
-          }}
-        />
+      <View style={styles.headerContainer}>
+        <View style={styles.headerTitle} />
         <PMTextLabel title={title} style={styles.titleLabel} />
       </View>
       <FlatList
@@ -106,5 +99,15 @@ const styles = StyleSheet.create({
     width: 120,
     textAlign: 'center',
     fontFamily: Design.fontFamily['KohinoorDevanagari-Medium'],
+  },
+  headerContainer: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    marginLeft: 16,
+  },
+  headerTitle: {
+    width: 4,
+    height: 20,
+    backgroundColor: Design.color.gray,
   },
 });

@@ -7,17 +7,73 @@ import MediaListViewLandscape from '../components/organisms/MediaListViewLandsca
 import {Design} from '../namespaces/Design';
 import {useFetchDashbordQuery} from '../redux/Dashbord/api';
 import HomeScreenLoader from '../components/molecules/HomeScreenLoader';
-import { localNotification } from '../utils/localNotification';
-
+import {useTranslation} from 'react-i18next';
 
 export const HomeScreen = () => {
   const {data, isLoading: isDashboardLoading} = useFetchDashbordQuery({});
-  const {gods, list1, list2, list3, updateConfig} = data ?? {};
+  const {t} = useTranslation();
+  const {gods, list1, list2, list3, list4, list5, updateConfig} = data ?? {};
 
   return (
     <View style={styles.conatiner}>
       <StatusBar backgroundColor={'#FFFEFA'} barStyle={'dark-content'} />
-      <Button title="Send Notification" onPress={localNotification}></Button>
+      <ScrollView>
+        <View style={styles.headerContainer}>
+          <HomeScreenHeader />
+          {/* <GodsCircularList data={gods} /> */}
+          {/* <ScalePress
+            onPress={() => console.log('oks')}
+            style={{
+              justifyContent: 'center',
+              alignItems: 'center',
+              width: '100%',
+            }}>
+            <Image
+              source={require('../assets/images/share-pushpmala.png')}
+              style={{
+                height: 140,
+                width: '90%',
+                marginTop: 10,
+                alignSelf: 'center',
+              }}
+              // resizeMode="contain"
+            />
+          </ScalePress> */}
+        </View>
+        {isDashboardLoading && <HomeScreenLoader />}
+        <View>
+          {!isDashboardLoading && (
+            <>
+              <GodsList title={t('home:godList:title')} data={gods} />
+
+              <View style={{paddingVertical: Design.space.large}}>
+                <MediaListViewLandscape
+                  title={t('home:postLists:list1')}
+                  data={list1?.posts}
+                />
+                <MediaListViewLandscape
+                  title={t('home:postLists:list2')}
+                  data={list2?.posts}
+                />
+                <MediaListViewLandscape
+                  title={t('home:postLists:list3')}
+                  data={list3?.posts}
+                />
+                <MediaListViewLandscape
+                  title={t('home:postLists:list4')}
+                  data={list4?.posts}
+                />
+                <MediaListViewLandscape
+                  title={t('home:postLists:list5')}
+                  data={list5?.posts}
+                />
+              </View>
+            </>
+          )}
+        </View>
+      </ScrollView>
+
+      {updateConfig && <UpdateDialog updateConfig={updateConfig} />}
     </View>
   );
 };

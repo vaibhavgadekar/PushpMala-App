@@ -1,17 +1,35 @@
 import {useNavigation, useRoute} from '@react-navigation/native';
 import React, {useEffect} from 'react';
-import {ImageBackground, ScrollView, StatusBar, View} from 'react-native';
+import {
+  ImageBackground,
+  ScrollView,
+  StatusBar,
+  StyleSheet,
+  View,
+} from 'react-native';
 import Animated, {FadeInDown} from 'react-native-reanimated';
 import {PMTextLabel} from '../components/atoms';
 import MediaListViewLandscape from '../components/organisms/MediaListViewLandscape';
 import {Design} from '../namespaces/Design';
 import {cdnUrl} from '../utils/constant';
-import {aaratiArray} from './HomeScreen';
+import {useFetPostsByGodIdQuery} from '../redux/god/api';
+import {Post} from '../namespaces/Post';
+
+import GodScreenLoader from '../components/molecules/GodScreenLoader';
 
 const GodDetailsScreen = () => {
   const navigation = useNavigation();
   const {params} = useRoute();
   const {godItem} = params;
+  const {data, isLoading: isGodLoading} = useFetPostsByGodIdQuery({
+    id: godItem?._id,
+  });
+
+  const filterResponse = (postCategoryType: string): Post[] => {
+    return data?.data?.data?.filter(
+      (item: Post) => item.postCategoryType === postCategoryType,
+    );
+  };
 
   useEffect(() => {
     StatusBar.setTranslucent(true);
@@ -25,77 +43,72 @@ const GodDetailsScreen = () => {
 
   const goBack = () => navigation.goBack();
   return (
-    <View style={{flex: 1, backgroundColor: Design.color.white}}>
+    <View style={styles.container}>
       <ScrollView>
-        {/* <StatusBar translucent backgroundColor={'transparent'}/> */}
-        {/* <PMHeader
-        title="सभी देवी-देवताओं के भजन"
-        leftIcon={{
-          icon: <ArrowLeft />,
-          onPress: goBack,
-        }}
-      /> */}
-
         <ImageBackground
           source={require('../assets/images/god-bg.jpeg')}
-          style={{
-            height: 280,
-            width: 'auto',
-            backgroundColor: Design.color.gray,
-            justifyContent: 'center',
-          }}>
+          style={styles.headerImage}>
           <Animated.View entering={FadeInDown.duration(600)}>
-            <PMTextLabel
-              title={godItem?.name}
-              style={{
-                textAlign: 'center',
-                fontSize: 32,
-                fontFamily: Design.fontFamily['KohinoorDevanagari-Bold'],
-                color: '#756D6D',
-                marginTop: 4,
-              }}
-            />
+            <PMTextLabel title={godItem?.name} style={styles.godTitle} />
           </Animated.View>
         </ImageBackground>
 
         <Animated.View
           entering={FadeInDown.duration(900)}
-          style={{alignItems: 'center', marginTop: -84}}>
+          style={styles.profileContainer}>
           <ImageBackground
             source={{uri: cdnUrl + godItem?.imagePath}}
-            style={{height: 150, width: 150}}
+            style={styles.profileImage}
           />
         </Animated.View>
-
-        {/* <View style={{justifyContent: 'center', alignItems: 'center', marginTop:16}}>
-          <View
-            style={{
-              paddingVertical: 16,
-              backgroundColor: Design.color.baseLight,
-              paddingHorizontal: 16,
-              width: '90%',
-              borderRadius:8
-            }}>
-
-<PMTextLabel
-              title={godItem?.description}
-              style={{
-                textAlign: 'center',
-                fontSize: 14,
-                fontFamily: Design.fontFamily['KohinoorDevanagari-Regular'],
-                color: '#756D6D',
-                marginTop: 4,
-              }}
+        {isGodLoading && <GodScreenLoader />}
+        {!isGodLoading && (
+          <>  
+            <MediaListViewLandscape
+              title="Top Arati"
+              data={filterResponse('ARATI')}
             />
-            </View>
-        </View> */}
-        <MediaListViewLandscape title="Top Songs" data={aaratiArray} />
-        <MediaListViewLandscape title="Top Songs" data={aaratiArray} />
-        <MediaListViewLandscape title="Top Songs" data={aaratiArray} />
-        <MediaListViewLandscape title="Top Songs" data={aaratiArray} />
+            <MediaListViewLandscape
+              title="Top Bhajans"
+              data={filterResponse('BHAJAN')}
+            />
+            <MediaListViewLandscape
+              title="Top Mantra"
+              data={filterResponse('MANTRA')}
+            />
+          </>
+        )}
       </ScrollView>
     </View>
   );
 };
 
 export default GodDetailsScreen;
+
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    backgroundColor: Design.color.white,
+  },
+  headerImage: {
+    height: 280,
+    width: 'auto',
+    backgroundColor: Design.color.gray,
+    justifyContent: 'center',
+  },
+  godTitle: {
+    textAlign: 'center',
+    fontSize: 32,
+    fontFamily: Design.fontFamily['KohinoorDevanagari-Bold'],
+    color: '#756D6D',
+    marginTop: 4,
+  },
+  profileContainer: {
+    alignItems: 'center',
+    marginTop: -84,
+  },
+  profileImage: {
+    height: 150,
+    width: 150,
+  },
+});

@@ -8,7 +8,7 @@ export type props = {
   title: string;
   author_name: string;
   isCurrentPlaying: boolean;
-  onPress: (selectedVideoId: string) => void;
+  onPress: () => void;
 };
 
 export default function YoutubeCard({
@@ -21,7 +21,7 @@ export default function YoutubeCard({
   return (
     <View>
       <Pressable
-        onPress={() => onPress(id)}
+        onPress={onPress}
         style={[
           styles.pressableContainer,
           isCurrentPlaying && styles.currentPlayingBackground,
@@ -77,7 +77,7 @@ const styles = StyleSheet.create({
   },
   titleText: {
     fontFamily: Design.fontFamily['KohinoorDevanagari-Medium'],
-    fontSize: Design.fontSize.small,
+    fontSize: Design.fontSize.regular,
     marginLeft: Design.space.xsmall,
   },
   authorText: {
