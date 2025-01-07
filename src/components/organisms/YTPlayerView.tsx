@@ -1,5 +1,5 @@
 import React, {useEffect, useRef, useState} from 'react';
-import {AppState, Pressable, ScrollView, StyleSheet, View} from 'react-native';
+import {AppState, Button, Pressable, ScrollView, StyleSheet, View} from 'react-native';
 import Animated, {FadeIn} from 'react-native-reanimated';
 import YoutubePlayer, {
   YoutubeIframeRef,
@@ -12,16 +12,19 @@ import {Post} from '../../namespaces/Post';
 import {useTranslation} from 'react-i18next';
 import {useFetchDashbordQuery} from '../../redux/Dashbord/api';
 import {iFrameDefaultBaseUrl} from '../../utils/constant';
+import PMIconButtons from '../atoms/PMIconButtons';
+import Share from 'react-native-share';
 
 export type props = {
   postItem: Post;
   relatedVodeos: Post[];
+  
 };
 export default function YTPlayerView({postItem, relatedVodeos}: props) {
   const playerRef = useRef<YoutubeIframeRef>(null);
   const {data: respData} = useFetchDashbordQuery({});
   const {youtubeConfig} = respData ?? {};
-  console.log({youtubeConfig});
+  // console.log({youtubeConfig});
 
   const [videoId, setVideo] = useState<Post>(postItem);
   const {t} = useTranslation();
@@ -113,6 +116,21 @@ export default function YTPlayerView({postItem, relatedVodeos}: props) {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [videoId]);
 
+  function onpress(): void {
+    throw new Error('Function not implemented.');
+  }
+  const onShare = async () => {
+    try {
+      const shareOptions = {
+        title: 'PushpMala',
+        message: 'Start your day with the blessings of God',
+        url: 'https://play.google.com/store/apps/details?id=com.pushpmala&hl=en-US&ah=P7M1VZZUyJpdSBy7aCzQLRMMUsg', 
+      };
+      await Share.open(shareOptions);
+    } catch (error) {
+      console.log('Error in sharing:', error);
+    }
+  };
   return (
     <>
       <Pressable
@@ -172,16 +190,30 @@ export default function YTPlayerView({postItem, relatedVodeos}: props) {
         )} */}
       </Pressable>
       <ScrollView>
-        <View style={{paddingHorizontal: Design.space.regular}}>
+        <View style={{paddingHorizontal: Design.space.small}}>
           <PMTextLabel
-            title={videoId?.name ?? ''}
+            title="Balaji Tandale | मी सरपंच आहे, म्हणून वाल्मिक कराडांशी ओळख - तांदळे : Walmik Karad"
             style={{
               fontFamily: Design.fontFamily['KohinoorDevanagari-Medium'],
-              fontSize: Design.space.large,
+              fontSize: Design.space.regular,
               color: Design.color.lightGray,
             }}
           />
+          <View
+            style={{
+              flexDirection: 'row',
+              gap: 6,
+              marginBottom: 12,
+              marginTop: 5,
+            }}>
+            <PMIconButtons title="Like"  />
+            <PMIconButtons title="share" onPress={onShare}/>
+            <PMIconButtons title="Report" />
+            <PMIconButtons title="Save" />
+            
+          </View>
         </View>
+
         {relatedVodeos?.map((item, index) => {
           return (
             <Animated.View

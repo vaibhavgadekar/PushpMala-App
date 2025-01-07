@@ -58,6 +58,7 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     gap: Design.space.xsmall,
     backgroundColor: 'white',
+    
   },
   currentPlayingBackground: {
     backgroundColor: '#efefef',
