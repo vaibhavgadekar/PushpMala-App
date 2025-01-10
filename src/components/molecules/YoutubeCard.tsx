@@ -2,13 +2,19 @@ import React from 'react';
 import {Image, Pressable, View, StyleSheet} from 'react-native';
 import {Design} from '../../namespaces/Design';
 import {PMTextLabel} from '../atoms';
+import {Text} from 'react-native';
+import ScalePress from '../atoms/ScalePress';
 
 export type props = {
   id: string;
   title: string;
   author_name: string;
-  isCurrentPlaying: boolean;
+  isCurrentPlaying?: boolean;
   onPress: () => void;
+  leftIcon?: {
+    icon: React.ReactElement;
+    onPress: () => void;
+  };
 };
 
 export default function YoutubeCard({
@@ -16,8 +22,12 @@ export default function YoutubeCard({
   title,
   onPress,
   id,
-  isCurrentPlaying,
+  isCurrentPlaying = false,
+  leftIcon,
 }: props) {
+  const emptyFunction = () => {
+    //TODO
+  };
   return (
     <View>
       <Pressable
@@ -46,6 +56,17 @@ export default function YoutubeCard({
             style={styles.authorText}
           />
         </View>
+        <View style={{width: '15%'}}>
+          <ScalePress style={{}} onPress={leftIcon?.onPress ?? emptyFunction}>
+            <>
+              {leftIcon && (
+                <View>
+                  {leftIcon?.icon}
+                </View>
+              )}
+            </>
+          </ScalePress>
+        </View>
       </Pressable>
     </View>
   );
@@ -58,7 +79,6 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     gap: Design.space.xsmall,
     backgroundColor: 'white',
-    
   },
   currentPlayingBackground: {
     backgroundColor: '#efefef',
@@ -73,7 +93,7 @@ const styles = StyleSheet.create({
     borderRadius: Design.space.xsmall,
   },
   textContainer: {
-    width: '60%',
+    width: '50%',
     height: 90,
   },
   titleText: {

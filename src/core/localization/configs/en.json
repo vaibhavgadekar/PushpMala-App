@@ -39,6 +39,20 @@
       "list3": "Worship of Lord Bholenath",
       "list4": "Devotion to Lord Shani",
       "list5": "Glory of Lord Ram's Name"
+    },
+    "youtubeScreen":{
+      "title":"सभी देवी-देवताओं के भजन",
+      "saveHeaderTitle":"आपकी सेव वीडियो",
+      "button":{
+        "share":"साझा करें।",
+        "save":"शेयर करें",
+         "report":"रिपोर्ट करें।"
+      },
+      "showToast":{
+        "save":"यहाँ सेव किया है",
+        "remove":"{{title}} बुकमार्क से हटा दिया गया है।"
+      },
+      "noData":"डेटा उपलब्ध नहीं है"
     }
   }
 }

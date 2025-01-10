@@ -7,4 +7,5 @@ export type RootStackParamList = {
   AudioPlayScreen: {image: string};
   VideoPlayScreen: {postItem: Post; relatedVodeos: Post[]};
   GodDetailsScreen: {godItem: God}
+  YoutubeSaveScreen:undefined
 };
