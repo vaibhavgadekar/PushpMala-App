@@ -7,10 +7,12 @@ import YTPlayerView from '../components/organisms/YTPlayerView';
 import {Design} from '../namespaces/Design';
 import {useFetchDashbordQuery} from '../redux/Dashbord/api';
 import YoutubeScreenLoader from '../components/molecules/YoutubeScreenLoader';
+import { useTranslation } from 'react-i18next';
+
 
 export default function VideoPlayScreen() {
   const [isLoading, setIsLoading] = useState(true);
-
+ const {t} = useTranslation();
   const navigation = useNavigation();
   const route = useRoute();
   const {postItem, relatedVodeos} = route?.params;
@@ -23,12 +25,13 @@ export default function VideoPlayScreen() {
     }, 300);
     return () => clearTimeout(timer);
   }, []);
+  
 
   return (
     <View style={styles.container}>
       <StatusBar translucent={false} />
       <PMHeader
-        title="सभी देवी-देवताओं के भजन"
+        title={t('home:youtubeScreen:title')}
         leftIcon={{
           icon: <ArrowLeft />,
           onPress: goBack,
@@ -38,7 +41,7 @@ export default function VideoPlayScreen() {
 
       {!isLoading && (
         <>
-          <YTPlayerView postItem={postItem} relatedVodeos={relatedVodeos} />
+          <YTPlayerView postItem={postItem} relatedVodeos={relatedVodeos}  />
         </>
       )}
     </View>

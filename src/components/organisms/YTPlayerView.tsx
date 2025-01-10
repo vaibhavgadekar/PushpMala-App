@@ -1,5 +1,13 @@
 import React, {useEffect, useRef, useState} from 'react';
-import {AppState, Button, Pressable, ScrollView, StyleSheet, View} from 'react-native';
+import {
+  AppState,
+  Button,
+  Linking,
+  Pressable,
+  ScrollView,
+  StyleSheet,
+  View,
+} from 'react-native';
 import Animated, {FadeIn} from 'react-native-reanimated';
 import YoutubePlayer, {
   YoutubeIframeRef,
@@ -14,13 +22,23 @@ import {useFetchDashbordQuery} from '../../redux/Dashbord/api';
 import {iFrameDefaultBaseUrl} from '../../utils/constant';
 import PMIconButtons from '../atoms/PMIconButtons';
 import Share from 'react-native-share';
+import {useNavigation} from '@react-navigation/native';
+import {NativeStackNavigationProp} from '@react-navigation/native-stack';
+import {RootStackParamList} from '../../namespaces/RootStackParamList';
+import AsyncStorage from '@react-native-async-storage/async-storage';
+
+import Save from '../../assets/icons/Save';
+import Share2 from '../../assets/icons/Share2';
+import Info from '../../assets/icons/info';
+import { showToast } from '../../utils/ToastUtil';
 
 export type props = {
   postItem: Post;
   relatedVodeos: Post[];
-  
 };
 export default function YTPlayerView({postItem, relatedVodeos}: props) {
+  const navigation =
+    useNavigation<NativeStackNavigationProp<RootStackParamList>>();
   const playerRef = useRef<YoutubeIframeRef>(null);
   const {data: respData} = useFetchDashbordQuery({});
   const {youtubeConfig} = respData ?? {};
@@ -60,6 +78,33 @@ export default function YTPlayerView({postItem, relatedVodeos}: props) {
       subscription.remove();
     };
   }, []);
+
+  const handelNavigate = async ( ) => {
+    // AsyncStorage.clear()
+    AsyncStorage.getItem('bookmark').then((res: string | null)=>{
+      let newArray: Post[] = [];
+      if(res){
+        const respData: Post[] = JSON.parse(res);
+
+        const isAlreadyAdded = respData?.filter(
+          (resp: Post) => resp._id !== videoId._id,
+        );
+
+        newArray = isAlreadyAdded.reverse()
+        newArray.push(videoId);
+        AsyncStorage.setItem('bookmark', JSON.stringify(newArray)).then((res)=>{
+          showToast(t('home:youtubeScreen:showToast:save'))
+          navigation.navigate('YoutubeSaveScreen')
+        })
+      }else{
+        newArray.push(videoId);
+        AsyncStorage.setItem('bookmark', JSON.stringify(newArray)).then(()=>{
+          navigation.navigate('YoutubeSaveScreen')
+        })
+      }
+    })
+   
+  };
 
   // useEffect(() => {
   //   const interval = setInterval(async () => {
@@ -124,13 +169,14 @@ export default function YTPlayerView({postItem, relatedVodeos}: props) {
       const shareOptions = {
         title: 'PushpMala',
         message: 'Start your day with the blessings of God',
-        url: 'https://play.google.com/store/apps/details?id=com.pushpmala&hl=en-US&ah=P7M1VZZUyJpdSBy7aCzQLRMMUsg', 
+        url: 'https://play.google.com/store/apps/details?id=com.pushpmala&hl=en-US&ah=P7M1VZZUyJpdSBy7aCzQLRMMUsg',
       };
       await Share.open(shareOptions);
     } catch (error) {
       console.log('Error in sharing:', error);
     }
   };
+  
   return (
     <>
       <Pressable
@@ -151,7 +197,7 @@ export default function YTPlayerView({postItem, relatedVodeos}: props) {
             height={300}
             volume={100}
             play={true}
-            forceAndroidAutoplay={true}
+            // forceAndroidAutoplay={true}
             videoId={videoId?.youtubeUrl}
             onReady={() => setIsReady(true)}
             onError={setErrors}
@@ -192,7 +238,7 @@ export default function YTPlayerView({postItem, relatedVodeos}: props) {
       <ScrollView>
         <View style={{paddingHorizontal: Design.space.small}}>
           <PMTextLabel
-            title="Balaji Tandale | मी सरपंच आहे, म्हणून वाल्मिक कराडांशी ओळख - तांदळे : Walmik Karad"
+            title={videoId?.name}
             style={{
               fontFamily: Design.fontFamily['KohinoorDevanagari-Medium'],
               fontSize: Design.space.regular,
@@ -206,11 +252,9 @@ export default function YTPlayerView({postItem, relatedVodeos}: props) {
               marginBottom: 12,
               marginTop: 5,
             }}>
-            <PMIconButtons title="Like"  />
-            <PMIconButtons title="share" onPress={onShare}/>
-            <PMIconButtons title="Report" />
-            <PMIconButtons title="Save" />
-            
+            <PMIconButtons title={t('home:youtubeScreen:button:save')} icon={<Share2  />} onPress={onShare} />
+            <PMIconButtons title={t('home:youtubeScreen:button:share')} icon={<Save  />} onPress={handelNavigate} />
+            <PMIconButtons title={t('home:youtubeScreen:button:report')} icon={<Info  />}  onPress={()=>Linking.openURL('mailto:gadekarv1@gmail.com?subject=Report PushpMala&body='+videoId?._id)}/>
           </View>
         </View>
 

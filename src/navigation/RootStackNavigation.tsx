@@ -7,6 +7,7 @@ import {Design} from '../namespaces/Design';
 import AudioPlayScreen from '../screens/AudioPlayScreen';
 import VideoPlayScreen from '../screens/VideoPlayScreen';
 import GodDetailsScreen from '../screens/GodDetailsScreen';
+import YoutubeSaveScreen from '../screens/YoutubeSaveScreen';
 
 const RootStack = createNativeStackNavigator<RootStackParamList>();
 
@@ -52,6 +53,14 @@ export const RootStackNavigation = () => {
       <RootStack.Screen
         name="GodDetailsScreen"
         component={GodDetailsScreen}
+        options={{
+          headerShown: false,
+          navigationBarColor: Design.color.white,
+        }}
+      />
+      <RootStack.Screen
+        name="YoutubeSaveScreen"
+        component={YoutubeSaveScreen}
         options={{
           headerShown: false,
           navigationBarColor: Design.color.white,
