@@ -22,7 +22,7 @@ export const RootStackNavigation = () => {
         component={WelcomeScreen}
         options={{
           headerShown: false,
-          navigationBarColor: Design.color.lightYellow,
+          navigationBarColor: '#BD936E',
         }}
       />
       <RootStack.Screen

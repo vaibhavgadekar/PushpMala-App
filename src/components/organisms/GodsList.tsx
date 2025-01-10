@@ -14,12 +14,11 @@ import {GodsListProps} from './types';
 import {useNavigation} from '@react-navigation/native';
 import {NativeStackNavigationProp} from '@react-navigation/native-stack';
 import {RootStackParamList} from '../../namespaces/RootStackParamList';
-import { God } from '../../namespaces/God';
+import {God} from '../../namespaces/God';
 
 export default function GodsList({data, title}: GodsListProps) {
   const navigation =
     useNavigation<NativeStackNavigationProp<RootStackParamList>>();
-    
 
   const handelNavigation = (godItem: God) => {
     navigation.navigate('GodDetailsScreen', {godItem});
@@ -46,12 +45,12 @@ export default function GodsList({data, title}: GodsListProps) {
           data={data ?? []}
           directionalLockEnabled={true}
           alwaysBounceVertical={true}
-          renderItem={({item, index}) => {            
+          renderItem={({item, index}) => {
             return (
               <ScalePress
                 key={index}
                 style={styles.wrapper}
-                onPress={()=>handelNavigation(item)}>
+                onPress={() => handelNavigation(item)}>
                 <ImageBackground
                   source={{uri: cdnUrl + item?.imagePath}}
                   style={styles.image}>
