@@ -1,5 +1,5 @@
 import React from 'react';
-import {ScrollView, StatusBar, StyleSheet, View} from 'react-native';
+import {Button, ScrollView, StatusBar, StyleSheet, View} from 'react-native';
 import UpdateDialog from '../components/organisms/dialogs/UpdateDialog';
 import GodsList from '../components/organisms/GodsList';
 import HomeScreenHeader from '../components/organisms/HomeScreenHeader';
