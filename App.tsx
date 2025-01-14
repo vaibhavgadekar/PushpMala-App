@@ -41,6 +41,9 @@ const App = () => {
 
     if (enabled) {
       console.log('Authorization status:', authStatus);
+      messaging()
+        .subscribeToTopic('notifications')
+        .then(() => console.log('Subscribed to topic!'));
     }
   }
 

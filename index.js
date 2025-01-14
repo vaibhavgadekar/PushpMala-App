@@ -17,6 +17,8 @@ async function onMessageReceived(message) {
     id: 'default',
     name: 'Default Channel',
     importance: AndroidImportance.HIGH,
+    lights: true,
+    lightColor: 'red',
   });
 
   if (res) {
